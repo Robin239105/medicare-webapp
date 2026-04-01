@@ -5,6 +5,7 @@
   "installCommand": "npm install && npm install --prefix client && npm install --prefix server",
   "framework": null,
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/[[...slug]]" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
