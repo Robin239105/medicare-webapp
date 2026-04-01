@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Appointment | MediCare Clinic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#eceef1",
+                        "surface-tint": "#0061a4",
+                        "secondary-fixed": "#d3e4ff",
+                        "tertiary-fixed-dim": "#62dbb4",
+                        "surface-dim": "#d8dadd",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-high": "#e6e8eb",
+                        "on-secondary-fixed-variant": "#004882",
+                        "inverse-primary": "#9ecaff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#002117",
+                        "surface-container-highest": "#e0e3e6",
+                        "inverse-on-surface": "#eff1f4",
+                        "outline-variant": "#c1c7d2",
+                        "surface-container-low": "#f2f4f7",
+                        "secondary": "#28609c",
+                        "secondary-container": "#8abcfd",
+                        "surface-bright": "#f7f9fc",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#9ecaff",
+                        "primary": "#005692",
+                        "surface-variant": "#e0e3e6",
+                        "on-surface-variant": "#414751",
+                        "primary-fixed": "#d1e4ff",
+                        "on-primary-container": "#e5efff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001d36",
+                        "on-primary-fixed-variant": "#00497d",
+                        "background": "#f7f9fc",
+                        "surface": "#f7f9fc",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#a2c9ff",
+                        "on-tertiary-fixed-variant": "#00513d",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#80f8cf",
+                        "primary-container": "#1a6fb5",
+                        "outline": "#717782",
+                        "tertiary-container": "#007b5e",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#006049",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#001c38",
+                        "on-secondary-container": "#024a85",
+                        "on-tertiary-container": "#aeffdf"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #005692; font-weight: 600; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation (Shell suppressed for Transactional Flow, only Brand identity remains) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tight text-sky-900">MediCare Clinic</div>
+<div class="flex items-center gap-4">
+<span class="text-slate-500 text-sm font-medium">Need help?</span>
+<a class="text-primary font-semibold hover:underline" href="#">Contact Support</a>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-4 max-w-5xl mx-auto">
+<!-- Progress Bar Section -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-4">
+<div>
+<span class="label-md font-semibold tracking-wider text-primary uppercase">Booking Progress</span>
+<h1 class="text-3xl font-semibold text-on-surface mt-1">Schedule Your Visit</h1>
+</div>
+<div class="text-slate-500 font-medium">Step 3 of 5</div>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[60%] transition-all duration-500"></div>
+</div>
+<div class="flex justify-between mt-4 text-xs font-semibold text-slate-400 tracking-wide uppercase">
+<div class="text-primary">Department</div>
+<div class="text-primary">Doctor</div>
+<div class="text-primary">Date &amp; Time</div>
+<div>Details</div>
+<div>Finish</div>
+</div>
+</div>
+<!-- Main Content Area: Step 3 (Date & Time) is currently focused -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left: Selection Panel (The "Sanctuary" booking process) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Date Selection -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<h2 class="text-xl font-semibold text-on-surface">Select Appointment Date</h2>
+</div>
+<div class="grid grid-cols-4 md:grid-cols-7 gap-3">
+<!-- Date Cards -->
+<button class="flex flex-col items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed-dim transition-colors group">
+<span class="text-xs font-bold text-slate-400 group-hover:text-primary uppercase">Mon</span>
+<span class="text-xl font-bold text-on-surface group-hover:text-primary">12</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed-dim transition-colors group">
+<span class="text-xs font-bold text-slate-400 group-hover:text-primary uppercase">Tue</span>
+<span class="text-xl font-bold text-on-surface group-hover:text-primary">13</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg bg-primary text-white shadow-md ring-4 ring-primary/10">
+<span class="text-xs font-bold opacity-80 uppercase">Wed</span>
+<span class="text-xl font-bold">14</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed-dim transition-colors group">
+<span class="text-xs font-bold text-slate-400 group-hover:text-primary uppercase">Thu</span>
+<span class="text-xl font-bold text-on-surface group-hover:text-primary">15</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg bg-surface-container-low hover:bg-primary-fixed-dim transition-colors group">
+<span class="text-xs font-bold text-slate-400 group-hover:text-primary uppercase">Fri</span>
+<span class="text-xl font-bold text-on-surface group-hover:text-primary">16</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg bg-surface-container-low opacity-50 cursor-not-allowed">
+<span class="text-xs font-bold text-slate-400 uppercase">Sat</span>
+<span class="text-xl font-bold text-slate-400">17</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg bg-surface-container-low opacity-50 cursor-not-allowed">
+<span class="text-xs font-bold text-slate-400 uppercase">Sun</span>
+<span class="text-xl font-bold text-slate-400">18</span>
+</button>
+</div>
+</section>
+<!-- Time Slot Selection (Horizontal Glass Cards) -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm overflow-hidden">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<h2 class="text-xl font-semibold text-on-surface">Available Slots</h2>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-sm font-semibold text-slate-500 mb-4 uppercase tracking-widest">Morning Sessions</p>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar">
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-primary bg-primary-fixed text-on-primary-fixed font-semibold">09:00 AM</button>
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">09:30 AM</button>
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">10:00 AM</button>
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">11:15 AM</button>
+</div>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-500 mb-4 uppercase tracking-widest">Afternoon Sessions</p>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar">
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">01:30 PM</button>
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">02:00 PM</button>
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">03:45 PM</button>
+<button class="flex-none px-6 py-3 rounded-lg border-2 border-transparent bg-surface-container-low hover:border-primary-container text-on-surface font-medium transition-all">04:30 PM</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right: Summary Sidebar -->
+<aside class="space-y-6">
+<div class="bg-surface-container-low rounded-xl p-6 sticky top-28">
+<h3 class="text-lg font-bold text-sky-900 mb-6">Appointment Summary</h3>
+<!-- Selected Doctor Card -->
+<div class="flex items-center gap-4 mb-8">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-slate-200 ring-2 ring-primary/20">
+<img class="w-full h-full object-cover" data-alt="portrait of a professional male doctor in clinical attire with a gentle expression and warm studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvtO8B1vQnEKiZ6gXPnwVs0E2yyLfGN_j3wFiKbdICY_NdIkIz-EfjwUyVMIrKHPj6NzZrPMiAqeKdC_RoNC_1SK803l-_7ex9hMgMm-as1l6wTl6nJkqEqSfg6UfmaG6iY1nP42H3JOM9Sew21XMYKv7UzMy8bjfG2muigT0KP8zqdSCd0UafVeCV4jRgeYJS3DKMxFwNFKttP7uTSyj8N9tDIDtqiAjPqXY6LK8dP-IL8f8pjdC147rHtjeZBL4F0x51Dd_bIBA"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary uppercase tracking-tighter">Cardiology Dept.</p>
+<p class="text-base font-bold text-on-surface">Dr. Julian Sterling</p>
+<div class="flex items-center gap-1 mt-1 text-tertiary">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" data-weight="fill">verified</span>
+<span class="text-xs font-semibold">Highly Rated</span>
+</div>
+</div>
+</div>
+<div class="space-y-4 pt-6 border-t border-slate-200">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Service Fee</span>
+<span class="font-bold text-on-surface">$120.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Consultation</span>
+<span class="font-bold text-on-surface">Included</span>
+</div>
+<div class="flex justify-between items-center text-lg pt-4">
+<span class="font-bold text-sky-900">Total</span>
+<span class="font-extrabold text-primary">$120.00</span>
+</div>
+</div>
+<div class="mt-8 space-y-3">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-secondary text-white font-bold rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+                            Continue to Details
+                        </button>
+<button class="w-full py-3 text-slate-500 font-semibold hover:text-primary transition-colors">
+                            Go Back
+                        </button>
+</div>
+</div>
+<!-- Trust Badge -->
+<div class="flex items-center gap-4 p-4 rounded-lg bg-tertiary/10 border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary" data-icon="security">security</span>
+<p class="text-xs text-on-tertiary-fixed-variant leading-tight">Your health data is protected by enterprise-grade encryption and HIPAA compliance.</p>
+</div>
+</aside>
+</div>
+<!-- Asymmetric Detail: Quick Tips -->
+<div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group p-8 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container-lowest">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="medical_information">medical_information</span>
+<h4 class="font-bold text-on-surface mb-2">Pre-Visit Prep</h4>
+<p class="text-sm text-slate-600 leading-relaxed">Bring any previous medical reports and a list of current medications for a more efficient consultation.</p>
+</div>
+<div class="group p-8 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container-lowest">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="payments">payments</span>
+<h4 class="font-bold text-on-surface mb-2">Insurance Check</h4>
+<p class="text-sm text-slate-600 leading-relaxed">We accept most major insurance providers. You can upload your card details in the next step.</p>
+</div>
+<div class="group p-8 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container-lowest">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="history">history</span>
+<h4 class="font-bold text-on-surface mb-2">Easy Rescheduling</h4>
+<p class="text-sm text-slate-600 leading-relaxed">Change of plans? Reschedule up to 24 hours before your appointment via the Patient Portal.</p>
+</div>
+</div>
+</main>
+<!-- Patient Details Modal / Section Preview (Step 4 Overlay Concept) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+<div class="bg-white rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden">
+<div class="bg-primary p-6 text-white flex justify-between items-center">
+<h2 class="text-xl font-bold">Patient Information</h2>
+<button class="material-symbols-outlined hover:bg-white/10 p-2 rounded-full" data-icon="close">close</button>
+</div>
+<div class="p-8 space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">First Name</label>
+<input class="w-full border-none bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary" placeholder="Enter first name" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Last Name</label>
+<input class="w-full border-none bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary" placeholder="Enter last name" type="text"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Primary Concern</label>
+<textarea class="w-full border-none bg-surface-container-low rounded-lg focus:ring-2 focus:ring-primary h-24" placeholder="Briefly describe your symptoms or reason for visit"></textarea>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary-container transition-colors shadow-lg">Confirm Booking</button>
+</div>
+</div>
+</div>
+<!-- Final Step Preview: Success Confirmation Screen (Static Layout) -->
+<div class="hidden min-h-screen flex items-center justify-center bg-surface p-8">
+<div class="max-w-md w-full text-center space-y-8">
+<div class="w-24 h-24 bg-tertiary text-white rounded-full flex items-center justify-center mx-auto shadow-xl ring-8 ring-tertiary/10">
+<span class="material-symbols-outlined text-5xl" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+<div class="space-y-2">
+<h2 class="text-3xl font-bold text-on-surface">Appointment Confirmed!</h2>
+<p class="text-slate-500">Your visit with Dr. Julian Sterling is scheduled.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-sm space-y-4 border border-slate-100">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Booking Reference</p>
+<div class="text-3xl font-mono font-bold text-primary tracking-widest">MC-992031</div>
+<div class="pt-4 flex items-center justify-center gap-2 text-sm font-semibold text-slate-600">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+                    Wed, 14 Dec | 09:00 AM
+                </div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg shadow-md hover:shadow-xl transition-all">Add to Calendar</button>
+<button class="w-full py-4 bg-white text-on-surface font-bold rounded-lg border border-slate-200 hover:bg-slate-50 transition-all">Go to Dashboard</button>
+</div>
+</div>
+</div>
+<!-- Minimalist Footer (Transactional) -->
+<footer class="w-full py-12 px-8 bg-slate-50 border-t border-slate-100">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-slate-500 text-sm">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+<div class="flex gap-8 text-sm font-medium text-slate-600">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+<a class="hover:text-primary" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>

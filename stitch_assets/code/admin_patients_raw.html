@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediCare Admin - Patient Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#717782",
+              "on-primary-fixed": "#001d36",
+              "surface-tint": "#0061a4",
+              "surface-variant": "#e0e3e6",
+              "error-container": "#ffdad6",
+              "on-background": "#191c1e",
+              "on-primary-container": "#e5efff",
+              "on-primary-fixed-variant": "#00497d",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f7",
+              "on-tertiary-fixed-variant": "#00513d",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#001c38",
+              "primary-fixed-dim": "#9ecaff",
+              "secondary": "#28609c",
+              "tertiary-fixed": "#80f8cf",
+              "on-secondary-container": "#024a85",
+              "primary": "#005692",
+              "surface-container-highest": "#e0e3e6",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f7f9fc",
+              "background": "#f7f9fc",
+              "tertiary-fixed-dim": "#62dbb4",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "surface": "#f7f9fc",
+              "inverse-primary": "#9ecaff",
+              "primary-container": "#1a6fb5",
+              "inverse-on-surface": "#eff1f4",
+              "on-surface-variant": "#414751",
+              "secondary-container": "#8abcfd",
+              "tertiary-container": "#007b5e",
+              "tertiary": "#006049",
+              "on-tertiary-container": "#aeffdf",
+              "on-tertiary-fixed": "#002117",
+              "surface-container": "#eceef1",
+              "on-secondary-fixed-variant": "#004882",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#a2c9ff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#d3e4ff",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#d1e4ff",
+              "outline-variant": "#c1c7d2",
+              "surface-container-high": "#e6e8eb"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-60 fixed left-0 top-0 bg-[#f7f9fc] dark:bg-slate-950 flex flex-col py-6 border-r-0 z-40">
+<div class="px-6 mb-8">
+<h2 class="text-lg font-semibold text-slate-900 dark:text-slate-100">MediCare Admin</h2>
+<p class="text-xs text-slate-500 font-['Inter'] leading-relaxed tracking-wide">Clinical Management</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<!-- Patients Tab (ACTIVE) -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#005692] dark:text-[#1a6fb5] font-bold border-l-4 border-[#005692] bg-white dark:bg-slate-900 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-bold">Patients</span>
+</a>
+<!-- Services Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-medium">Services</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-error text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="emergency_share">emergency_share</span>
+                Emergency Alert
+            </button>
+<div class="border-t border-slate-200 dark:border-slate-800 pt-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-sm">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-60 min-h-screen p-8 lg:p-12">
+<!-- Header Section -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl font-bold tracking-tight text-on-surface mb-2">Patient Registry</h1>
+<p class="text-on-surface-variant body-lg max-w-2xl">Manage patient records, appointment history, and clinical insights within the Sanctuary ecosystem.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-12 pr-6 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary-container w-full md:w-80 text-sm" placeholder="Search name or phone..." type="text"/>
+</div>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-semibold shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                    New Patient
+                </button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Patient List Section (Left Column) -->
+<section class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden">
+<div class="p-6 border-b border-surface-variant/30 flex justify-between items-center">
+<h3 class="title-md text-on-surface font-semibold">Active Patients</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-xs font-bold uppercase tracking-wider">42 Total</span>
+</div>
+</div>
+<div class="divide-y divide-surface-variant/20">
+<!-- Patient Row 1 -->
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="professional portrait of a middle-aged woman with glasses smiling warmly in a clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-XVowR6NM1gBBagZbAjLeaqT5r6jwm0xSDdZQu15_VSFfkzZb5DB_6oWgfy0-qXSL6gVhsLy4o0vTT9av-AgmITeJACMrnIsPycnwPmtBFMLC9Ku5N2HEAgmDDZOl3E7XPPo2rcy-BeCoz-RUkdBv2mFJlePPHpUdIVGqPO9mRqbwI9JUuwB5oedW5__osBy34wUkqabrgj44ZKOdmAnHmlD8xxwBoNjdqlXJO8SslO5LjvgK90x0EMY7R0jK_AowHWLHxEocpMg"/>
+<div>
+<h4 class="font-semibold text-on-surface group-hover:text-primary transition-colors">Elena Richardson</h4>
+<p class="text-sm text-outline">+1 (555) 012-3456</p>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end gap-1">
+<span class="label-md text-outline">Total Visits</span>
+<span class="font-bold text-primary">12</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-outline uppercase tracking-tighter">Last Visit</p>
+<p class="text-sm font-medium">Oct 24, 2024</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Patient Row 2 -->
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low transition-colors group cursor-pointer bg-surface-container-low/30">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="portrait of an elderly man with silver hair and a kind expression in a soft-lit room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWe13Gn90JPPm4955z_BdotnUc5v0Q6q-m31gF1uIDruUKh6SI0FZdTFv7ZkhcHB4Q4XqtnENVTB90weXRyMFHdqP6hNFh-ERp8m9MX57k7-VHGRmH5CynvTqNfLrf6IARChIvMdEYkHZ187UiqSMkeGKLYXCG7Qh5ZdD1c5qIuO_xpjq8MA-w7bFkxBo8JuCkd9X1D5uREU_D418T7b-KEf_rPRHef0E1e25-Qc5rEDe6XzJTraNKjvwiTgakuvcMXCEWk7m1eeI"/>
+<div>
+<h4 class="font-semibold text-on-surface group-hover:text-primary transition-colors">Marcus Thorne</h4>
+<p class="text-sm text-outline">+1 (555) 098-7654</p>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end gap-1">
+<span class="label-md text-outline">Total Visits</span>
+<span class="font-bold text-primary">08</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-outline uppercase tracking-tighter">Last Visit</p>
+<p class="text-sm font-medium">Nov 02, 2024</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Patient Row 3 -->
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="close-up portrait of a young man with beard and focused gaze in bright natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqLFe26PN8JrwOVZtTnixgr-o3HHP-M39V8HmvfBko90CDGIhuCeNp-zTsN6AYQU_VD_f1vpIpPhmwOXd1W3bp8xMsBAXI0uJBhosqEBSgJZR5C0h9d21NNILojuQtRZ429pwC-fkmTkgA1PR12hOKGwe4cLHXarPzNleKpoK8ZAmhzp3DuTpJQbmp9jN3erPthIUI254DnzA6a2IqzYoZpgPcOPGxf32qtFyKUzv1ZtKXj_r4EHSUYgWqK0aLDOyJS4A8J0oDzqM"/>
+<div>
+<h4 class="font-semibold text-on-surface group-hover:text-primary transition-colors">Julian Vane</h4>
+<p class="text-sm text-outline">+1 (555) 234-5678</p>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end gap-1">
+<span class="label-md text-outline">Total Visits</span>
+<span class="font-bold text-primary">24</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-outline uppercase tracking-tighter">Last Visit</p>
+<p class="text-sm font-medium">Oct 15, 2024</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Patient Row 4 -->
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg">SH</div>
+<div>
+<h4 class="font-semibold text-on-surface group-hover:text-primary transition-colors">Sarah Halloway</h4>
+<p class="text-sm text-outline">+1 (555) 777-8899</p>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end gap-1">
+<span class="label-md text-outline">Total Visits</span>
+<span class="font-bold text-primary">03</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-outline uppercase tracking-tighter">Last Visit</p>
+<p class="text-sm font-medium">Nov 08, 2024</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Patient Detailed Profile (Right Column) -->
+<section class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Profile Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm">
+<div class="text-center mb-8">
+<div class="relative inline-block mb-4">
+<img class="w-32 h-32 rounded-full object-cover ring-4 ring-primary-container/20" data-alt="detailed portrait of Elena Richardson with a soft background of a modern medical office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHhFqCAB3oczI7GMTcrrVQuc0MQYTR3BzI5F0yf4x3exZvpBYb7mgByLRDc0nhqEuKgWX6xUKV1xWusuyKF3JC33i_fIsHi4ZYreGOaMMqcwT1dwyyK6zyd98PaP9brmOu-VGxcktJVmbDmKtKvRZ5dNwaQMpt_KK5-Vk5rDJZuNOmBDpCE-rRWrUcygznv3K__JOqAJBJe2UxlEkT88BGImiQrhSewkvNeW14gRMP3QUJFpXsScaglkRiSJ-m8GKs-PFROgOsS90"/>
+<span class="absolute bottom-1 right-1 bg-tertiary w-6 h-6 rounded-full border-4 border-white"></span>
+</div>
+<h2 class="headline-md text-on-surface">Elena Richardson</h2>
+<p class="text-outline">Patient ID: #MC-94021</p>
+</div>
+<div class="space-y-6">
+<div>
+<span class="label-md text-outline block mb-2">Contact Information</span>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="mail">mail</span>
+<span>elena.r@email.com</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="location_on">location_on</span>
+<span>482 Sanctuary Lane, Oakhaven</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="cake">cake</span>
+<span>June 14, 1978 (46 years)</span>
+</div>
+</div>
+</div>
+<div>
+<span class="label-md text-outline block mb-2">Recent History</span>
+<div class="space-y-3">
+<div class="p-4 bg-surface rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="stethoscope">stethoscope</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">General Check-up</p>
+<p class="text-xs text-outline">Oct 24 • Dr. Aris Thorne</p>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="description">description</span>
+</div>
+<div class="p-4 bg-surface rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="bloodtype">bloodtype</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">Lab Results</p>
+<p class="text-xs text-outline">Sep 12 • Hematology</p>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="description">description</span>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-primary-container text-on-primary-container rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+                            Schedule Appointment
+                        </button>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary text-white p-6 rounded-2xl">
+<span class="label-md opacity-80 block mb-1">Total Spent</span>
+<p class="text-2xl font-bold">$1,240</p>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-surface-variant/30">
+<span class="label-md text-outline block mb-1">Loyalty Tier</span>
+<p class="text-2xl font-bold text-primary">Gold</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="ml-60 bg-[#f7f9fc] dark:bg-slate-950 w-full py-12 px-8 border-t border-slate-200/50 dark:border-slate-800/50 relative">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<p class="text-md font-bold text-slate-800 dark:text-slate-200">MediCare Clinic Sanctuary</p>
+<p class="font-['Inter'] text-sm tracking-normal text-slate-500 dark:text-slate-400">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-sm tracking-normal text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity hover:opacity-80" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-sm tracking-normal text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity hover:opacity-80" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-sm tracking-normal text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity hover:opacity-80" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+</body></html>

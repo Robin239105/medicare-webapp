@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediCare Clinic | The Clinical Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#eceef1",
+              "surface-tint": "#0061a4",
+              "secondary-fixed": "#d3e4ff",
+              "tertiary-fixed-dim": "#62dbb4",
+              "surface-dim": "#d8dadd",
+              "inverse-surface": "#2d3133",
+              "surface-container-high": "#e6e8eb",
+              "on-secondary-fixed-variant": "#004882",
+              "inverse-primary": "#9ecaff",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#002117",
+              "surface-container-highest": "#e0e3e6",
+              "inverse-on-surface": "#eff1f4",
+              "outline-variant": "#c1c7d2",
+              "surface-container-low": "#f2f4f7",
+              "secondary": "#28609c",
+              "secondary-container": "#8abcfd",
+              "surface-bright": "#f7f9fc",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#9ecaff",
+              "primary": "#005692",
+              "surface-variant": "#e0e3e6",
+              "on-surface-variant": "#414751",
+              "primary-fixed": "#d1e4ff",
+              "on-primary-container": "#e5efff",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#001d36",
+              "on-primary-fixed-variant": "#00497d",
+              "background": "#f7f9fc",
+              "surface": "#f7f9fc",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#a2c9ff",
+              "on-tertiary-fixed-variant": "#00513d",
+              "on-background": "#191c1e",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#80f8cf",
+              "primary-container": "#1a6fb5",
+              "outline": "#717782",
+              "tertiary-container": "#007b5e",
+              "surface-container-lowest": "#ffffff",
+              "tertiary": "#006049",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#001c38",
+              "on-secondary-container": "#024a85",
+              "on-tertiary-container": "#aeffdf"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .cloud-shadow {
+            box-shadow: 0 12px 32px rgba(13, 79, 138, 0.06);
+        }
+        .sanctuary-gradient {
+            background: linear-gradient(135deg, #1a6fb5 0%, #28609c 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-8 h-20 max-w-full mx-auto font-sans antialiased tracking-wide">
+<div class="text-2xl font-bold tracking-tight text-sky-900 dark:text-sky-100">MediCare Clinic</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-sky-700 dark:text-sky-400 font-semibold border-b-2 border-sky-700 py-1" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-600 transition-colors" href="#">About</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-600 transition-colors" href="#">Services</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-600 transition-colors" href="#">Doctors</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-600 transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-white px-6 py-2.5 rounded-lg font-semibold hover:opacity-90 transition-all cloud-shadow">
+                Book Now
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden px-8 lg:px-24">
+<div class="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto w-full">
+<div class="z-10">
+<span class="label-md font-semibold tracking-wider text-primary mb-4 block uppercase opacity-80">Welcome to Your Sanctuary</span>
+<h1 class="text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] text-on-surface mb-6">
+                        Healthcare Redefined with <span class="text-primary">Compassion.</span>
+</h1>
+<p class="text-body-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
+                        Experience a clinical environment that prioritizes your peace of mind. We combine cutting-edge precision with the warmth of a healing sanctuary.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="sanctuary-gradient text-white px-8 py-4 rounded-lg font-semibold text-lg cloud-shadow hover:scale-105 transition-transform">
+                            Book Appointment
+                        </button>
+<button class="bg-surface-container-low text-primary px-8 py-4 rounded-lg font-semibold text-lg border border-outline-variant/20 hover:bg-surface-container-high transition-colors">
+                            Our Services
+                        </button>
+</div>
+</div>
+<div class="relative hidden lg:block">
+<div class="absolute -top-20 -right-20 w-[120%] h-[120%] bg-primary-fixed/30 rounded-full blur-[100px] -z-10"></div>
+<img class="rounded-[2rem] shadow-2xl w-full h-[600px] object-cover border-8 border-surface-container-lowest" data-alt="Modern high-end medical clinic interior with soft natural lighting, wooden accents, and comfortable designer seating in a sanctuary style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ4ZmxoAXThOcsAd-KmvaJvP8LaObPCrosnXpxChgRgIGNh-W4fmVLo84MAq7gItMz8sEE8j7C_eaq7vJ1ImDbzAc6k58CVayt3t8q7EUY0tSGGaexSJzJmYxAdr4aMOFGagLApCgDJkp2wkPOj45HDP_xghieBdFGW6FJknfMK0mGbmEvURt3pgY1usR-5cbUPafZ-zE2l3UC_QBte8LebiKgS_noXTPnUl1tLOxkNHZU0d9bWhEtomqoJYJ7Tshqi7n2xbdQqxM"/>
+</div>
+</div>
+</section>
+<!-- Stats Bar -->
+<section class="bg-surface-container-low py-12 px-8">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<div class="p-6">
+<div class="text-5xl font-extrabold text-primary mb-2">5000+</div>
+<div class="label-md tracking-widest text-on-surface-variant uppercase">Happy Patients</div>
+</div>
+<div class="p-6">
+<div class="text-5xl font-extrabold text-primary mb-2">20+</div>
+<div class="label-md tracking-widest text-on-surface-variant uppercase">Specialist Doctors</div>
+</div>
+<div class="p-6">
+<div class="text-5xl font-extrabold text-primary mb-2">15+</div>
+<div class="label-md tracking-widest text-on-surface-variant uppercase">Years Excellence</div>
+</div>
+</div>
+</section>
+<!-- Services Overview (Bento Grid Style) -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-on-surface mb-4">Our Specialized Services</h2>
+<div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow hover:-translate-y-2 transition-transform border border-outline-variant/10">
+<div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined" data-icon="cardiology">cardiology</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Cardiology</h3>
+<p class="text-on-surface-variant leading-relaxed">Advanced heart health diagnostics and personalized care plans for cardiovascular wellness.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow hover:-translate-y-2 transition-transform border border-outline-variant/10">
+<div class="w-12 h-12 bg-tertiary-fixed rounded-lg flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined" data-icon="neurology">neurology</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Neurology</h3>
+<p class="text-on-surface-variant leading-relaxed">Comprehensive neurological evaluations and treatment for brain and nervous system health.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow hover:-translate-y-2 transition-transform border border-outline-variant/10">
+<div class="w-12 h-12 bg-secondary-fixed rounded-lg flex items-center justify-center text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="orthopedics">orthopedics</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Orthopedics</h3>
+<p class="text-on-surface-variant leading-relaxed">Specialized care for bone, joint, and muscle health, focusing on mobility and recovery.</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow hover:-translate-y-2 transition-transform border border-outline-variant/10">
+<div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined" data-icon="pediatrics">child_care</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Pediatrics</h3>
+<p class="text-on-surface-variant leading-relaxed">Gentle and expert medical care tailored for infants, children, and adolescents.</p>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow hover:-translate-y-2 transition-transform border border-outline-variant/10">
+<div class="w-12 h-12 bg-tertiary-fixed rounded-lg flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined" data-icon="dermatology">vaccines</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Dermatology</h3>
+<p class="text-on-surface-variant leading-relaxed">Expert skin care treatments and diagnostics for all types of dermatological conditions.</p>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow hover:-translate-y-2 transition-transform border border-outline-variant/10">
+<div class="w-12 h-12 bg-secondary-fixed rounded-lg flex items-center justify-center text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="emergency">e911_emergency</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Emergency</h3>
+<p class="text-on-surface-variant leading-relaxed">24/7 rapid response medical care for urgent health situations and critical needs.</p>
+</div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="bg-surface-container-low py-24 px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-4xl font-bold text-on-surface mb-8">Seamless Care in 3 Steps</h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full sanctuary-gradient text-white flex items-center justify-center font-bold text-xl">1</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Book Your Visit</h4>
+<p class="text-on-surface-variant">Use our simple online portal to select your preferred specialist and time slot.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full sanctuary-gradient text-white flex items-center justify-center font-bold text-xl">2</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Initial Consultation</h4>
+<p class="text-on-surface-variant">Meet with our expert doctors in a calm, focused environment for a thorough evaluation.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full sanctuary-gradient text-white flex items-center justify-center font-bold text-xl">3</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Personalized Plan</h4>
+<p class="text-on-surface-variant">Receive a tailored recovery or wellness plan designed specifically for your needs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<img class="rounded-2xl shadow-xl z-10 relative" data-alt="Close up of a doctor's hand holding a digital tablet showing medical data while explaining to a patient in a bright office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhD8IhwgnITaW517yvB13oMfFN0haYpzMMDAUrJ5YuLJTox9_B2-Og_ejefejxPEIOc1ao6vy_0MivWoaAbtd0NgV4zi90iXv_sFK88HTCm2EHi09b_BUs5HpDDucSbaloUGR45UR2Wnh_ZVhcjeXSMrjatQqU4uohtGNWt-IPJ6dHk8_GPi7VrRimINrHpsM_2nMEQd0wzV8sPfj1enL6an-Dmy6mHZXK4lKt_2uDTIxgz4Z-Ff8eXjUe0tZiXeU25M0geUzjcRs"/>
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-outline-variant/20 z-20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="verified">verified</span>
+<div>
+<div class="font-bold text-on-surface">Certified Care</div>
+<div class="text-sm text-on-surface-variant">ISO 9001 Excellence</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Doctors -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl font-bold text-on-surface mb-4">Meet Our Specialists</h2>
+<p class="text-on-surface-variant">The world-class minds behind our sanctuary.</p>
+</div>
+<button class="text-primary font-semibold flex items-center gap-2 hover:underline">
+                    View All Doctors <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Doctor 1 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4 h-[400px]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Professional portrait of a female doctor in a white coat smiling confidently in a modern medical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpBnoYXNTtKj6en08_UFnCzFfd8SHfPMvhtwogFjuH_AzT3w_zSxgdqHFPdiQQ4sGl-4C8iMMDfNFW4oY85NNeTyEMh0vv1AlLQQFxFkf-EVczqS-BjexnkC5BPwQKfe0v5TYwUj2toyCZh2BeMfKgdm0FcuvtwYE2OCih4-3Ns8wxiljQuPAgiJAISfOLmlptRIGerDeRft_0jkk6V6k9iF8i7EROPTKGjzUghv9QUFXScoQW0P268U-M0r9bzjQC03A-x_LHgvM"/>
+<div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
+<button class="w-full sanctuary-gradient text-white py-2 rounded-md font-medium">Book Appointment</button>
+</div>
+</div>
+<h4 class="text-xl font-bold">Dr. Sarah Jenkins</h4>
+<p class="text-primary font-medium mb-2">Senior Cardiologist</p>
+<div class="flex items-center text-on-surface-variant text-sm gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9 (120+ Reviews)</span>
+</div>
+</div>
+<!-- Doctor 2 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4 h-[400px]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Portrait of a male specialist doctor looking professional and approachable against a light blue studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxxgYpxYYNN4zjEC621kfHgKmtrDvm2zl-McTZPu27BxJP79mqCkLQ4Pc4ssdaZzAzNuAP8OBsca7fdhbmypeaVPsntff3H_U82qteBhbKw88W0_TmxY2Vte8ChNBnc5hQxn1sxig-JuaDD-ZvX6t9sEu8h8OXy8jubtOdVQqVEE06o7vTv0Forc9F8r_8LoaglpUYfm4HQS90TQbN3VNYUj4eCkGNWX_NwgolYs_i-fagztvVPSalMuWGG2PT7Av_e6aASXfgQig"/>
+<div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
+<button class="w-full sanctuary-gradient text-white py-2 rounded-md font-medium">Book Appointment</button>
+</div>
+</div>
+<h4 class="text-xl font-bold">Dr. Michael Chen</h4>
+<p class="text-primary font-medium mb-2">Neurology Specialist</p>
+<div class="flex items-center text-on-surface-variant text-sm gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.8 (95+ Reviews)</span>
+</div>
+</div>
+<!-- Doctor 3 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4 h-[400px]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Portrait of a female pediatrician in a friendly office environment, holding a stethoscope and smiling warmly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlCeNJ6giclG_HpPGMyN9eBpLoXo__Z4ez1KzxesROTdnd2dbG8SA-sZNuWHKtHi-yTMUrPQr1Bo_9HGGnLIJwTte_yDoKhlkscf3320pcTB-zxRI0yHHFoRFpiMV5wbHM2d8rLKtL8CsOCCxJTaZu4Jz4uOMjdNzrGTjbT-ZREnsvsuPWvj9A3XJn5wmNXb9e7USm5EBMTF9-KIQwVWCPVoZ3G6H1AI57N7Zte4jPIWjAXPcBKIzIy0z1RODk-mwesKTwzg6KDEk"/>
+<div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
+<button class="w-full sanctuary-gradient text-white py-2 rounded-md font-medium">Book Appointment</button>
+</div>
+</div>
+<h4 class="text-xl font-bold">Dr. Elena Rodriguez</h4>
+<p class="text-primary font-medium mb-2">Lead Pediatrician</p>
+<div class="flex items-center text-on-surface-variant text-sm gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>5.0 (150+ Reviews)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="bg-primary/5 py-24 px-8">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-on-surface mb-4">Patient Experiences</h2>
+<p class="text-on-surface-variant">What it feels like to be cared for at MediCare.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow relative">
+<span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-4 right-4 opacity-20" data-icon="format_quote">format_quote</span>
+<p class="text-on-surface italic mb-8 relative z-10">"The atmosphere is so different from any other clinic I've been to. It really does feel like a sanctuary. Dr. Jenkins was incredibly thorough."</p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close-up portrait of a middle-aged woman with a kind smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvhgwZbzmXbaQLMoWRcCouWRfpvT18H5QFbZROs9bAqPyyplhi1snWNMsBVS0pTKBppACLS_Gim6kH6-oN8HVFtJGqHsqjo9VeJMK0nEeJvpMnrHlwMbAt9iW0_tSfkQURYra6UXE6uPqYgRmW6q2BvXmvhEb4DLNwj0uRHe1Gmh11Dohe7A3XCm5_cgTwSUI_1OS4x4cZBpx-jSE2C5oOWKj7bSnXrBNrn1WAXZKsGDdQt0Um0KmROEMzlwpbCM3y9aB5mw3ho_E"/>
+<div>
+<div class="font-bold">Emily Thompson</div>
+<div class="text-sm text-on-surface-variant">Patient for 3 years</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow relative">
+<span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-4 right-4 opacity-20" data-icon="format_quote">format_quote</span>
+<p class="text-on-surface italic mb-8 relative z-10">"I had surgery here last month and the post-op care was exemplary. The staff treated me like family. Professionalism at its peak."</p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a young man looking confident and satisfied" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoxODcdkzVaZb3idlJ8xbY-u17g3PFzb54oJM18Lg514X-qfhA4R6Oc90rnCz0uve-txBgk0gbKHyg9OaBrfwK4e1zTijVGxQI6u8SBMuB977JjxMaKzE31uwLhbD2vHDMU3RAmnH8AqMAGipSfKp6Ot51uPBNJrDpqPPHS4rWBY3Dgs_JjGGvQeXQCIZ6WwCHDmS9o88csZ8jqFbQ2jBmXnTE0Rv3rn6vNNJ8jcEdLCSX4o8EUk8trN_8q9f6GK0Ev7Ed8Mq210w"/>
+<div>
+<div class="font-bold">Marcus Johnson</div>
+<div class="text-sm text-on-surface-variant">Post-Op Recovery</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl cloud-shadow relative">
+<span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-4 right-4 opacity-20" data-icon="format_quote">format_quote</span>
+<p class="text-on-surface italic mb-8 relative z-10">"Finally, a clinic that respects your time. No long waits, and the booking process is so streamlined. Highly recommended for busy professionals."</p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Professional woman with glasses looking thoughtful and pleased" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXzKYCHKkl8YN-xrvJ1ovT4Lf6geWGBDZ0wGFNu1A2edMER6RnLPNNIaZGUDR2MOfUnQTzO-FECEaHLl3KgM6R60N76r-rxHbCN2yUMJeViCAx0BrR3IqGBRiV2B4Qk4ewnpFBewtjSeYqj0IJY6Kfo6zjBnvkHtA3uYg_VAGLtx87aFC9840JVF89xI0BMXmWTRpWwEZ65wAmaJjTek3RsJvpEwTpokkG1reGkrOAJPD3q25m5bnQWI8dKMiPpcEZpmZw_AOhavI"/>
+<div>
+<div class="font-bold">Sophia Lee</div>
+<div class="text-sm text-on-surface-variant">Regular Checkup</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact / Map Section -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden cloud-shadow border border-outline-variant/10">
+<div class="grid lg:grid-cols-2">
+<div class="p-12 lg:p-20">
+<h2 class="text-4xl font-bold text-on-surface mb-8">Get in Touch</h2>
+<form class="space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="label-md uppercase text-on-surface-variant">Full Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 py-3" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="label-md uppercase text-on-surface-variant">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 py-3" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="label-md uppercase text-on-surface-variant">Message</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/20 py-3" placeholder="How can we help you?" rows="4"></textarea>
+</div>
+<button class="w-full sanctuary-gradient text-white py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-opacity">
+                                Send Message
+                            </button>
+</form>
+<div class="mt-12 grid grid-cols-2 gap-8">
+<div>
+<h5 class="font-bold text-primary mb-2">Location</h5>
+<p class="text-on-surface-variant text-sm">123 Sanctuary Way,<br/>Medical District, NY 10001</p>
+</div>
+<div>
+<h5 class="font-bold text-primary mb-2">Support</h5>
+<p class="text-on-surface-variant text-sm">support@medicare.com<br/>+1 (555) 000-0000</p>
+</div>
+</div>
+</div>
+<div class="h-[400px] lg:h-auto min-h-[500px] bg-surface-container-high relative">
+<div class="absolute inset-0 bg-slate-200" data-location="New York City" style="">
+<!-- Placeholder for actual map integration -->
+<div class="w-full h-full flex items-center justify-center bg-slate-100 flex-col text-on-surface-variant">
+<span class="material-symbols-outlined text-5xl mb-2" data-icon="location_on">location_on</span>
+<span class="font-medium">Interactive Map View</span>
+<span class="text-xs opacity-60">MediCare Clinic Sanctuary, NY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full py-12 px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<div class="space-y-4">
+<div class="text-xl font-bold text-sky-700">MediCare Clinic</div>
+<p class="body-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                    A premium private clinic sanctuary where world-class medical expertise meets intentional patient-centric care.
+                </p>
+</div>
+<div class="space-y-4">
+<div class="text-sky-900 dark:text-sky-200 font-bold uppercase tracking-widest text-sm">Our Services</div>
+<ul class="space-y-2">
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Cardiology</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Neurology</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Pediatrics</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Emergency Care</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="text-sky-900 dark:text-sky-200 font-bold uppercase tracking-widest text-sm">Quick Links</div>
+<ul class="space-y-2">
+<li><a class="text-slate-500 hover:underline transition-all" href="#">About Us</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Our Doctors</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Patient Portal</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="text-sky-900 dark:text-sky-200 font-bold uppercase tracking-widest text-sm">Resources</div>
+<ul class="space-y-2">
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Terms of Service</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Emergency Care</a></li>
+<li><a class="text-slate-500 hover:underline transition-all" href="#">Patient Portal</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-slate-500 text-sm">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

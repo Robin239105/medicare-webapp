@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us | MediCare Clinic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#717782",
+                        "on-primary-fixed": "#001d36",
+                        "surface-tint": "#0061a4",
+                        "surface-variant": "#e0e3e6",
+                        "error-container": "#ffdad6",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#e5efff",
+                        "on-primary-fixed-variant": "#00497d",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f4f7",
+                        "on-tertiary-fixed-variant": "#00513d",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#001c38",
+                        "primary-fixed-dim": "#9ecaff",
+                        "secondary": "#28609c",
+                        "tertiary-fixed": "#80f8cf",
+                        "on-secondary-container": "#024a85",
+                        "primary": "#005692",
+                        "surface-container-highest": "#e0e3e6",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f7f9fc",
+                        "background": "#f7f9fc",
+                        "tertiary-fixed-dim": "#62dbb4",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadd",
+                        "surface": "#f7f9fc",
+                        "inverse-primary": "#9ecaff",
+                        "primary-container": "#1a6fb5",
+                        "inverse-on-surface": "#eff1f4",
+                        "on-surface-variant": "#414751",
+                        "secondary-container": "#8abcfd",
+                        "tertiary-container": "#007b5e",
+                        "tertiary": "#006049",
+                        "on-tertiary-container": "#aeffdf",
+                        "on-tertiary-fixed": "#002117",
+                        "surface-container": "#eceef1",
+                        "on-secondary-fixed-variant": "#004882",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#a2c9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d3e4ff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "primary-fixed": "#d1e4ff",
+                        "outline-variant": "#c1c7d2",
+                        "surface-container-high": "#e6e8eb"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .cloud-shadow {
+            box-shadow: 0 12px 32px rgba(13, 79, 138, 0.06);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-display-lg { font-size: 3rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+        .text-headline-md { font-size: 2rem; font-weight: 600; }
+        .text-title-md { font-size: 1.125rem; font-weight: 500; }
+        .text-body-lg { font-size: 1rem; font-weight: 400; line-height: 1.6; }
+        .text-label-md { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-8 h-20 bg-surface/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none z-50 font-['Inter'] antialiased tracking-tight">
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold tracking-tight text-[#005692] dark:text-[#1a6fb5]">MediCare Clinic</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#1a6fb5] transition-colors" href="#">About</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#1a6fb5] transition-colors" href="#">Services</a>
+<a class="text-[#005692] dark:text-[#1a6fb5] font-semibold border-b-2 border-[#005692] pb-1" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-lg transition-all scale-95 active:scale-90 duration-200">Login</button>
+<button class="px-6 py-2.5 bg-gradient-to-br from-[#1a6fb5] to-[#28609c] text-white font-semibold rounded-lg shadow-sm hover:opacity-90 transition-all scale-95 active:scale-90 duration-200">Book Now</button>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+<!-- Hero Header -->
+<header class="mb-20 max-w-3xl">
+<p class="text-label-md text-primary mb-4">Connect With Us</p>
+<h1 class="text-display-lg text-on-surface mb-6">Experience the <span class="text-primary-container">Sanctuary</span> of Modern Care.</h1>
+<p class="text-body-lg text-on-surface-variant">We are here to assist you with any inquiries regarding our medical services, specialist appointments, or clinical facility tours.</p>
+</header>
+<!-- Bento Layout for Contact Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Contact Form Section (Left Large Column) -->
+<section class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-8 md:p-12 cloud-shadow">
+<h2 class="text-headline-md mb-8">Send a Message</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant" for="name">Full Name</label>
+<input class="w-full px-4 py-3 bg-surface border-none rounded-lg focus:ring-2 focus:ring-primary-container transition-all outline-none" id="name" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant" for="email">Email Address</label>
+<input class="w-full px-4 py-3 bg-surface border-none rounded-lg focus:ring-2 focus:ring-primary-container transition-all outline-none" id="email" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant" for="subject">Department</label>
+<select class="w-full px-4 py-3 bg-surface border-none rounded-lg focus:ring-2 focus:ring-primary-container transition-all outline-none appearance-none" id="subject">
+<option>General Inquiry</option>
+<option>Specialist Consultation</option>
+<option>Billing &amp; Insurance</option>
+<option>Technical Support</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant" for="message">Message</label>
+<textarea class="w-full px-4 py-3 bg-surface border-none rounded-lg focus:ring-2 focus:ring-primary-container transition-all outline-none resize-none" id="message" placeholder="How can we help you today?" rows="5"></textarea>
+</div>
+<button class="w-full md:w-auto px-10 py-4 bg-gradient-to-br from-[#1a6fb5] to-[#28609c] text-white font-bold rounded-lg cloud-shadow hover:scale-[1.02] active:scale-[0.98] transition-all" type="submit">
+                        Send Message
+                    </button>
+</form>
+</section>
+<!-- Info & Location Sidebar (Right Column) -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Emergency Highlight Card -->
+<div class="bg-error-container text-on-error-container rounded-xl p-6 flex items-start gap-4 border-l-4 border-error">
+<span class="material-symbols-outlined text-error mt-1" data-weight="fill">emergency</span>
+<div>
+<h3 class="font-bold text-lg mb-1 uppercase tracking-tight">Emergency Contact</h3>
+<p class="text-2xl font-black mb-2 tracking-tighter">911 or (555) 000-9999</p>
+<p class="text-sm opacity-80">Our emergency triage is available 24/7 for life-threatening conditions.</p>
+</div>
+</div>
+<!-- Contact Details Card -->
+<div class="bg-surface-container-low rounded-xl p-8 space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary cloud-shadow">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Phone</p>
+<p class="text-title-md text-on-surface">+1 (800) 123-4567</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary cloud-shadow">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Email</p>
+<p class="text-title-md text-on-surface">care@medicareclinic.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary cloud-shadow">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Opening Hours</p>
+<p class="text-title-md text-on-surface">Mon - Fri: 8 AM - 8 PM</p>
+<p class="text-sm text-on-surface-variant">Sat - Sun: 10 AM - 4 PM</p>
+</div>
+</div>
+</div>
+<!-- Location / Address Card -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden cloud-shadow">
+<div class="h-48 w-full bg-surface-variant relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50 contrast-125" data-alt="Stylized map showing urban city block with clinical facilities highlighted in soft blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx0umw1UkrapWM-g_TumUGWIl3eUu11n4cQUsAH_DtshL3XGufD1JS5qL4zFnQnJBObFodTefyfQAOawlL81CfQiSEQn1L7HJW5FN2IncvCYkoUXkUDC1cQycV8PSE-oMG0YXrHIalZsclgLzFUZq4xqv6qbx1THLA2WIryx-8LjrWhrpnFjcwb5dyPUoAcN9G8Nymt2BHt8euollVJ7yV4ziI5ay4wFHJPBtNOfUXDc8JT1wP5xJAx8fZH1S1oStlvzSrFJ74ZY8"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<div class="bg-white p-3 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-primary text-3xl" data-weight="fill">location_on</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 glass-panel px-4 py-2 rounded-lg text-xs font-semibold text-primary">
+                            123 Sanctuary Way, Medical District
+                        </div>
+</div>
+<div class="p-6">
+<h3 class="text-title-md mb-2">Clinic Location</h3>
+<p class="text-body-lg text-on-surface-variant mb-4">Located in the heart of the city’s health district, easily accessible via public transit and with ample private parking.</p>
+<a class="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all" href="#">
+                            Get Directions
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Section: Frequently Asked Questions Link -->
+<section class="mt-24 bg-primary-container text-on-primary-container rounded-2xl p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="z-10 relative max-w-xl">
+<h2 class="text-headline-md mb-4">Have a quick question?</h2>
+<p class="text-lg opacity-90">Browse our help center for immediate answers regarding insurance, patient portals, and visitor policies.</p>
+</div>
+<a class="z-10 relative px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-surface transition-all whitespace-nowrap" href="#">
+                Visit Help Center
+            </a>
+<!-- Decorative circle -->
+<div class="absolute -right-12 -top-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f7f9fc] dark:bg-slate-950 w-full py-12 px-8 border-t border-slate-200/50 dark:border-slate-800/50">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-md font-bold text-slate-800 dark:text-slate-200">MediCare Clinic Sanctuary</span>
+<p class="text-slate-500 text-sm font-['Inter'] tracking-normal">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-sm font-['Inter'] text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-sm font-['Inter'] text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity hover:opacity-80" href="#">Terms of Service</a>
+<a class="text-sm font-['Inter'] text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity hover:opacity-80" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+</body></html>

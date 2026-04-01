@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediCare Admin - Services Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#717782",
+              "on-primary-fixed": "#001d36",
+              "surface-tint": "#0061a4",
+              "surface-variant": "#e0e3e6",
+              "error-container": "#ffdad6",
+              "on-background": "#191c1e",
+              "on-primary-container": "#e5efff",
+              "on-primary-fixed-variant": "#00497d",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f7",
+              "on-tertiary-fixed-variant": "#00513d",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#001c38",
+              "primary-fixed-dim": "#9ecaff",
+              "secondary": "#28609c",
+              "tertiary-fixed": "#80f8cf",
+              "on-secondary-container": "#024a85",
+              "primary": "#005692",
+              "surface-container-highest": "#e0e3e6",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f7f9fc",
+              "background": "#f7f9fc",
+              "tertiary-fixed-dim": "#62dbb4",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "surface": "#f7f9fc",
+              "inverse-primary": "#9ecaff",
+              "primary-container": "#1a6fb5",
+              "inverse-on-surface": "#eff1f4",
+              "on-surface-variant": "#414751",
+              "secondary-container": "#8abcfd",
+              "tertiary-container": "#007b5e",
+              "tertiary": "#006049",
+              "on-tertiary-container": "#aeffdf",
+              "on-tertiary-fixed": "#002117",
+              "surface-container": "#eceef1",
+              "on-secondary-fixed-variant": "#004882",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#a2c9ff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#d3e4ff",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#d1e4ff",
+              "outline-variant": "#c1c7d2",
+              "surface-container-high": "#e6e8eb"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-60 fixed left-0 top-0 bg-[#f7f9fc] dark:bg-slate-950 flex flex-col py-6 border-r-0 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-lg font-semibold text-slate-900 dark:text-slate-100">MediCare Admin</h1>
+<p class="text-xs text-slate-500 font-medium tracking-wide uppercase">Clinical Management</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium">Patients</span>
+</a>
+<!-- Active State: Services -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#005692] dark:text-[#1a6fb5] font-bold border-l-4 border-[#005692] bg-white dark:bg-slate-900 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-medium">Services</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full py-3 px-4 rounded-xl bg-error text-white font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="emergency">emergency</span>
+                Emergency Alert
+            </button>
+<div class="pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-[#005692] text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-error text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-60 min-h-screen p-8 lg:p-12">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-2">
+<span class="text-xs font-bold tracking-[0.1em] text-primary uppercase">Operations Center</span>
+<h2 class="text-4xl font-bold tracking-tight text-on-surface">Clinic Services</h2>
+<p class="text-on-surface-variant max-w-xl">Configure, reorder, and manage clinical offerings available to patients across all departments.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 py-3 rounded-xl bg-surface-container-highest text-on-surface font-semibold flex items-center gap-2 hover:bg-outline-variant/30 transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="history">history</span>
+                    Logs
+                </button>
+<button class="px-6 py-3 rounded-xl bg-gradient-to-br from-primary-container to-secondary text-white font-bold flex items-center gap-2 shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+                    Add New Service
+                </button>
+</div>
+</header>
+<!-- Stats Overview (Asymmetric Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/10 shadow-sm flex flex-col justify-between min-h-[160px]">
+<div class="flex justify-between items-start">
+<span class="p-3 bg-primary/5 rounded-xl text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="medical_information">medical_information</span>
+</span>
+<span class="text-xs font-bold text-tertiary bg-tertiary-fixed px-3 py-1 rounded-full uppercase tracking-wider">Operational</span>
+</div>
+<div>
+<h4 class="text-3xl font-bold">24 Active</h4>
+<p class="text-on-surface-variant text-sm">Services currently visible to patients</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+<div class="text-primary-container">
+<span class="material-symbols-outlined text-2xl" data-icon="category">category</span>
+</div>
+<div>
+<h4 class="text-2xl font-bold">8</h4>
+<p class="text-on-surface-variant text-sm">Departments</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+<div class="text-secondary">
+<span class="material-symbols-outlined text-2xl" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<h4 class="text-2xl font-bold">+12%</h4>
+<p class="text-on-surface-variant text-sm">Service Utilization</p>
+</div>
+</div>
+</section>
+<!-- Services Management Area -->
+<div class="bg-surface-container-low rounded-3xl p-1 overflow-hidden">
+<div class="bg-surface-container-lowest rounded-[1.4rem] shadow-sm">
+<!-- Filters and Search -->
+<div class="p-6 flex flex-col md:flex-row gap-4 items-center justify-between border-b border-surface-container">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface rounded-xl border-none ring-1 ring-outline-variant/30 focus:ring-2 focus:ring-primary outline-none transition-all text-sm" placeholder="Search services by name or department..." type="text"/>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full md:w-auto">
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold uppercase tracking-wider">All</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-surface text-on-surface-variant text-xs font-bold uppercase tracking-wider hover:bg-surface-container-high transition-colors">Cardiology</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-surface text-on-surface-variant text-xs font-bold uppercase tracking-wider hover:bg-surface-container-high transition-colors">Neurology</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-surface text-on-surface-variant text-xs font-bold uppercase tracking-wider hover:bg-surface-container-high transition-colors">Diagnostics</button>
+</div>
+</div>
+<!-- Draggable List of Services -->
+<div class="divide-y divide-surface-container">
+<!-- Service Item 1 -->
+<div class="group flex items-center gap-6 p-6 hover:bg-surface-container-low transition-all">
+<button class="cursor-grab active:cursor-grabbing text-outline opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</button>
+<div class="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="ecg_heart">ecg_heart</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h5 class="text-lg font-bold text-on-surface">Advanced Cardiology Screening</h5>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-outline uppercase tracking-widest">DEPT-042</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">Comprehensive heart health assessment including ECG, stress test, and arterial analysis.</p>
+</div>
+<div class="hidden lg:block w-40">
+<span class="text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full">Cardiology</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-xs font-bold text-on-surface-variant mb-1">ACTIVE</span>
+<button class="w-10 h-5 bg-tertiary rounded-full relative transition-colors">
+<span class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-variant text-outline transition-colors" title="Edit Service">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-error/10 text-error transition-colors" title="Delete Service">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Item 2 -->
+<div class="group flex items-center gap-6 p-6 hover:bg-surface-container-low transition-all">
+<button class="cursor-grab active:cursor-grabbing text-outline opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</button>
+<div class="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="psychology">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h5 class="text-lg font-bold text-on-surface">Neuro-Imaging (MRI)</h5>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-outline uppercase tracking-widest">DEPT-018</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">High-resolution brain imaging and neurological mapping using advanced 3T technology.</p>
+</div>
+<div class="hidden lg:block w-40">
+<span class="text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full">Neurology</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-xs font-bold text-on-surface-variant mb-1">ACTIVE</span>
+<button class="w-10 h-5 bg-tertiary rounded-full relative transition-colors">
+<span class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-variant text-outline transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-error/10 text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Item 3 (Inactive State) -->
+<div class="group flex items-center gap-6 p-6 hover:bg-surface-container-low transition-all bg-surface-container-low/30 opacity-75">
+<button class="cursor-grab active:cursor-grabbing text-outline opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</button>
+<div class="w-14 h-14 rounded-2xl bg-surface-variant flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-3xl" data-icon="biotech">biotech</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h5 class="text-lg font-bold text-outline">Experimental Lab Therapy</h5>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-error-container text-on-error-container uppercase tracking-widest">MAINTENANCE</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">Custom genetic screening and biomarker analysis for specialized treatment plans.</p>
+</div>
+<div class="hidden lg:block w-40">
+<span class="text-xs font-bold text-outline bg-surface-container-highest px-3 py-1.5 rounded-full">Diagnostics</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-xs font-bold text-on-surface-variant mb-1">INACTIVE</span>
+<button class="w-10 h-5 bg-outline-variant rounded-full relative transition-colors">
+<span class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-variant text-outline transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-error/10 text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Service Item 4 -->
+<div class="group flex items-center gap-6 p-6 hover:bg-surface-container-low transition-all">
+<button class="cursor-grab active:cursor-grabbing text-outline opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
+</button>
+<div class="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="vaccines">vaccines</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h5 class="text-lg font-bold text-on-surface">Immunization Protocol</h5>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-surface-container-high text-outline uppercase tracking-widest">DEPT-005</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">Standard and specialized vaccination schedules for all age groups including international travel prep.</p>
+</div>
+<div class="hidden lg:block w-40">
+<span class="text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full">Primary Care</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-xs font-bold text-on-surface-variant mb-1">ACTIVE</span>
+<button class="w-10 h-5 bg-tertiary rounded-full relative transition-colors">
+<span class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-variant text-outline transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-error/10 text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Pagination -->
+<div class="p-6 bg-surface-container-lowest rounded-b-[1.4rem] flex items-center justify-between border-t border-surface-container">
+<p class="text-sm text-on-surface-variant">Showing <span class="font-bold text-on-surface">4</span> of <span class="font-bold text-on-surface">24</span> services</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 hover:bg-surface-container-high text-outline">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-white font-bold text-sm">1</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface font-medium text-sm">2</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface font-medium text-sm">3</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 hover:bg-surface-container-high text-outline">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Department Overview (Secondary Bento Section) -->
+<section class="mt-12">
+<h3 class="text-2xl font-bold text-on-surface mb-6">Department Distribution</h3>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<h4 class="font-bold">Service Requests per Dept.</h4>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                            View Full Report <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Cardiology</span>
+<span class="font-bold">78%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[78%] h-full bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Radiology</span>
+<span class="font-bold">64%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[64%] h-full bg-secondary rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Neurology</span>
+<span class="font-bold">42%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[42%] h-full bg-tertiary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative rounded-3xl overflow-hidden min-h-[300px] flex items-end p-8 text-white">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+<img alt="Clinic Interior" class="absolute inset-0 w-full h-full object-cover" data-alt="modern luxury hospital hallway with minimalist interior design and soft natural morning light coming through large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4F2cLQEjlhjKQBWCZ7tWV2SwrE3TNzr4iWAqSwt2THtsdYhy4OJfcfL7HYZsVbvzYthUHkOwUdX_TrQL9zy-ml7H3JAavWhNq4ogV-Y-xmyCXcaO-DkurAT9HcQEZHPxnP0MVqe7JFDgWceHxkW4lDYV3Dd6iKsxl6r66bCE6bkXinHCCCH1djgzDy_giJVM3KJieWGnO-028viUBec-IKXN1AApaaGW3AidmTUo38LIYIKBCMD6YUGdVSUo-LqTPPIhUFOCDXKA"/>
+<div class="relative z-20">
+<h4 class="text-xl font-bold mb-2">Sanctuary Standards</h4>
+<p class="text-sm opacity-90 leading-relaxed">Our clinical sanctuary environment is maintained through rigorous service audits and patient feedback loops.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Footer Anchor -->
+<footer class="w-full py-12 px-0 mt-12 border-t border-slate-200/50 dark:border-slate-800/50">
+<div class="max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
+<div>
+<h3 class="text-md font-bold text-slate-800 dark:text-slate-200 mb-1">MediCare Clinic Sanctuary</h3>
+<p class="text-sm font-['Inter'] tracking-normal text-slate-500 dark:text-slate-400">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-sm font-['Inter'] text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-sm font-['Inter'] text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity" href="#">Terms of Service</a>
+<a class="text-sm font-['Inter'] text-slate-500 hover:text-slate-800 dark:text-slate-400 transition-opacity" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Appointment Slot (As required by Specialized Component logic - rendered as a quick action sidebar or overlay if needed, but here integrated as 'Service Quick View') -->
+<div class="fixed bottom-8 right-8 z-40">
+<button class="p-4 bg-primary text-white rounded-full shadow-2xl hover:scale-110 active:scale-90 transition-transform flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="support_agent">support_agent</span>
+</button>
+</div>
+</body></html>

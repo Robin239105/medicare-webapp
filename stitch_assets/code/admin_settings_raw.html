@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Settings | MediCare Clinic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline": "#717782",
+              "on-primary-fixed": "#001d36",
+              "surface-tint": "#0061a4",
+              "surface-variant": "#e0e3e6",
+              "error-container": "#ffdad6",
+              "on-background": "#191c1e",
+              "on-primary-container": "#e5efff",
+              "on-primary-fixed-variant": "#00497d",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f2f4f7",
+              "on-tertiary-fixed-variant": "#00513d",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#001c38",
+              "primary-fixed-dim": "#9ecaff",
+              "secondary": "#28609c",
+              "tertiary-fixed": "#80f8cf",
+              "on-secondary-container": "#024a85",
+              "primary": "#005692",
+              "surface-container-highest": "#e0e3e6",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f7f9fc",
+              "background": "#f7f9fc",
+              "tertiary-fixed-dim": "#62dbb4",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "surface": "#f7f9fc",
+              "inverse-primary": "#9ecaff",
+              "primary-container": "#1a6fb5",
+              "inverse-on-surface": "#eff1f4",
+              "on-surface-variant": "#414751",
+              "secondary-container": "#8abcfd",
+              "tertiary-container": "#007b5e",
+              "tertiary": "#006049",
+              "on-tertiary-container": "#aeffdf",
+              "on-tertiary-fixed": "#002117",
+              "surface-container": "#eceef1",
+              "on-secondary-fixed-variant": "#004882",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#a2c9ff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#d3e4ff",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#d1e4ff",
+              "outline-variant": "#c1c7d2",
+              "surface-container-high": "#e6e8eb"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e0e3e6; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-screen w-60 bg-[#f7f9fc] dark:bg-slate-950 flex flex-col py-6 border-r-0 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-lg font-semibold text-slate-900 dark:text-slate-100">MediCare Admin</h1>
+<p class="text-xs text-slate-500 font-label tracking-wide uppercase">Clinical Management</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-medium">Services</span>
+</a>
+<!-- ACTIVE STATE: Settings -->
+<a class="flex items-center gap-3 px-6 py-3 text-[#005692] dark:text-[#1a6fb5] font-bold border-l-4 border-[#005692] bg-white dark:bg-slate-900 transition-colors duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full py-3 px-4 bg-error text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
+                Emergency Alert
+            </button>
+<div class="pt-4 border-t border-slate-200/50 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="text-sm">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-60 min-h-screen p-8 lg:p-12">
+<header class="mb-12">
+<h2 class="text-4xl font-bold tracking-tight text-on-surface mb-2">Administrative Settings</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl">Configure your clinic's global parameters, operational hours, and security credentials from this sanctuary of control.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Clinic Identity & Schedule (Bento Style) -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Section: Clinic Identity -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm border border-transparent">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="clinic_f">home_health</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Clinic Identity</h3>
+<p class="text-sm text-on-surface-variant">Public facing information for your patients.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Clinic Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline/50 transition-all" type="text" value="MediCare Clinic Sanctuary"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Contact Email</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" type="email" value="admin@medicare-sanctuary.com"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Physical Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" type="text" value="742 Evergreen Terrace, Medical District, Springfield"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Primary Phone</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" type="tel" value="+1 (555) 000-1234"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Website URL</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" type="text" value="www.medicare-sanctuary.com"/>
+</div>
+</div>
+</section>
+<!-- Section: Operational Hours & Slot Config -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Hours -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm">
+<h3 class="text-lg font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+                            Opening Hours
+                        </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2 border-b border-surface-variant/30">
+<span class="text-sm font-medium">Mon - Fri</span>
+<div class="flex gap-2">
+<input class="w-16 text-center text-xs py-1 border-none bg-surface-container-low rounded" type="text" value="08:00"/>
+<span class="text-outline">-</span>
+<input class="w-16 text-center text-xs py-1 border-none bg-surface-container-low rounded" type="text" value="18:00"/>
+</div>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-variant/30">
+<span class="text-sm font-medium">Saturday</span>
+<div class="flex gap-2">
+<input class="w-16 text-center text-xs py-1 border-none bg-surface-container-low rounded" type="text" value="09:00"/>
+<span class="text-outline">-</span>
+<input class="w-16 text-center text-xs py-1 border-none bg-surface-container-low rounded" type="text" value="14:00"/>
+</div>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-sm font-medium">Sunday</span>
+<span class="text-xs font-bold text-error bg-error-container px-2 py-1 rounded">CLOSED</span>
+</div>
+</div>
+</section>
+<!-- Appointment Config -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm">
+<h3 class="text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="event_repeat">event_repeat</span>
+                            Slot Duration
+                        </h3>
+<p class="text-xs text-on-surface-variant mb-6">Default time allocated per visit.</p>
+<div class="grid grid-cols-3 gap-3">
+<button class="group relative flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant/30 hover:bg-primary/5 transition-all">
+<span class="text-lg font-bold text-on-surface">15</span>
+<span class="text-[10px] text-outline uppercase font-label">Min</span>
+</button>
+<button class="group relative flex flex-col items-center justify-center p-4 rounded-xl bg-primary-container text-on-primary-container ring-2 ring-primary transition-all">
+<span class="text-lg font-bold">30</span>
+<span class="text-[10px] uppercase font-label opacity-80">Min</span>
+<span class="absolute -top-2 -right-2 bg-tertiary text-white text-[8px] px-1.5 py-0.5 rounded-full">ACTIVE</span>
+</button>
+<button class="group relative flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant/30 hover:bg-primary/5 transition-all">
+<span class="text-lg font-bold text-on-surface">60</span>
+<span class="text-[10px] text-outline uppercase font-label">Min</span>
+</button>
+</div>
+<div class="mt-8 flex items-center justify-between p-4 bg-surface-container rounded-xl">
+<div class="flex flex-col">
+<span class="text-sm font-bold">Email Alerts</span>
+<span class="text-[10px] text-on-surface-variant">Notify staff on new bookings</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+</div>
+</div>
+<!-- Right Column: Security & Image Context -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Security Section -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm">
+<h3 class="text-lg font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-error" data-icon="lock">lock</span>
+                        Security Portal
+                    </h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Current Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" placeholder="••••••••••••" type="password"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">New Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" placeholder="Min. 12 characters" type="password"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold tracking-wider text-outline uppercase font-label">Confirm New Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 text-on-surface transition-all" type="password"/>
+</div>
+<button class="w-full py-3 bg-on-surface text-surface rounded-xl font-bold text-sm shadow-md active:scale-[0.98] transition-all">
+                            Update Credentials
+                        </button>
+</div>
+</section>
+<!-- Contextual Visual -->
+<div class="relative overflow-hidden rounded-2xl aspect-[4/3] group">
+<img alt="Administrative Office" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern minimalist healthcare office with soft natural lighting, a sleek desk, and clinical architectural details in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOppg0CsFLUmoABpoaWMrpY5T-wj6JPA_H5baGNneUr5LJn6ODVUoz2BEtFo62y6GZLYukkQ8wt3rBe3iGKoi2oq2Ti6kDAHAjvJSAF5VPwSf5_TPygbISHTTUhreGZ_sDMnDbU7Q_4uEoiZ1Bc70iCYhpDuWDSQ0d3sjChSsI1rwIbE5DHrHVdLmVfykQ3TPF-tiurdt7NLTkrK7sMT92ok9HPY6hH3ucgag0JAdz526aGPHHVgm3oV1STpOAMWMb33N_b1zg6w0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-6">
+<span class="text-white/70 text-[10px] font-label tracking-widest uppercase mb-1">Clinic Status</span>
+<p class="text-white font-bold">System Online &amp; Secure</p>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex flex-col gap-4">
+<button class="w-full h-14 bg-gradient-to-br from-primary-container to-secondary text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                        Save Global Changes
+                    </button>
+<button class="w-full h-12 bg-transparent border border-outline-variant/30 text-on-surface-variant rounded-xl font-semibold text-sm hover:bg-surface-container transition-all">
+                        Discard Draft
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Anchor -->
+<footer class="ml-60 bg-[#f7f9fc] dark:bg-slate-950 border-t border-slate-200/50 dark:border-slate-800/50 w-full py-12 px-8">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start">
+<span class="text-md font-bold text-slate-800 dark:text-slate-200">MediCare Clinic Sanctuary</span>
+<p class="text-slate-500 text-xs mt-1">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 text-sm transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 text-sm transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-slate-800 dark:text-slate-400 text-sm transition-colors" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+</body></html>

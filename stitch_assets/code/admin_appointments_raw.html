@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediCare Admin - Appointments Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container": "#eceef1",
+            "surface-tint": "#0061a4",
+            "secondary-fixed": "#d3e4ff",
+            "tertiary-fixed-dim": "#62dbb4",
+            "surface-dim": "#d8dadd",
+            "inverse-surface": "#2d3133",
+            "surface-container-high": "#e6e8eb",
+            "on-secondary-fixed-variant": "#004882",
+            "inverse-primary": "#9ecaff",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#002117",
+            "surface-container-highest": "#e0e3e6",
+            "inverse-on-surface": "#eff1f4",
+            "outline-variant": "#c1c7d2",
+            "surface-container-low": "#f2f4f7",
+            "secondary": "#28609c",
+            "secondary-container": "#8abcfd",
+            "surface-bright": "#f7f9fc",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#9ecaff",
+            "primary": "#005692",
+            "surface-variant": "#e0e3e6",
+            "on-surface-variant": "#414751",
+            "primary-fixed": "#d1e4ff",
+            "on-primary-container": "#e5efff",
+            "on-tertiary": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#001d36",
+            "on-primary-fixed-variant": "#00497d",
+            "background": "#f7f9fc",
+            "surface": "#f7f9fc",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#a2c9ff",
+            "on-tertiary-fixed-variant": "#00513d",
+            "on-background": "#191c1e",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#80f8cf",
+            "primary-container": "#1a6fb5",
+            "outline": "#717782",
+            "tertiary-container": "#007b5e",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#006049",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#001c38",
+            "on-secondary-container": "#024a85",
+            "on-tertiary-container": "#aeffdf"
+          },
+          fontFamily: {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .status-pending { background-color: #fef9c3; color: #854d0e; } /* Yellow-100 / Yellow-800 */
+    .status-confirmed { background-color: #dcfce7; color: #166534; } /* Green-100 / Green-800 */
+    .status-cancelled { background-color: #fee2e2; color: #991b1b; } /* Red-100 / Red-800 */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-60 fixed left-0 top-0 bg-slate-50 flex flex-col py-6 space-y-2 z-50">
+<div class="px-6 mb-8">
+<h2 class="text-lg font-bold text-sky-800 tracking-tight">MediCare Admin</h2>
+<p class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Clinic Management</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="label-md font-semibold tracking-wider">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-sky-700 border-l-4 border-sky-700 bg-sky-50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="label-md font-semibold tracking-wider">Appointments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="label-md font-semibold tracking-wider">Doctors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="label-md font-semibold tracking-wider">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="label-md font-semibold tracking-wider">Services</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="label-md font-semibold tracking-wider">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="label-md font-semibold tracking-wider">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-60 min-h-screen">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 bg-white/90 backdrop-blur-xl shadow-sm">
+<h1 class="headline-md text-slate-900 font-semibold text-xl">Appointments Management</h1>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden ring-2 ring-sky-50">
+<img alt="Admin User Avatar" class="w-full h-full object-cover" data-alt="Professional medical administrator headshot with neutral background and confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADYpLZ3ocI7GF-AynvsfGdMcXyYX-RXGboWa-ooHbXi_tlezOlJDTBLEWTG2AL-nmMotGfuJZET9KeGMQNjvWbdO1qLl0Gu9nBYEsbpTVKS-TnIni2esYiC2EOxjaRYKJI8Jr18UGMRHNh3bPm80tf3T2UB6hWr56kaNRXSNwkwJhdGpoXWhZpu7xp0r-04JOmUERavUkcVioJFDa6Hkl87zWx9EiJtXk7_Si7zN3CQJtSaYEp4dMxi-0veYzNiLk1korZ_aLF2dk"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Statistics / Quick Actions Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent hover:border-sky-100 transition-colors">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Today's Visits</p>
+<h3 class="text-3xl font-bold text-sky-900">24</h3>
+<p class="text-xs text-tertiary font-medium mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% from yesterday
+          </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent hover:border-sky-100 transition-colors">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Pending Requests</p>
+<h3 class="text-3xl font-bold text-sky-900">08</h3>
+<p class="text-xs text-slate-400 font-medium mt-2">Requires urgent attention</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent hover:border-sky-100 transition-colors">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Occupancy</p>
+<h3 class="text-3xl font-bold text-sky-900">82%</h3>
+<div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full w-[82%]"></div>
+</div>
+</div>
+<div class="bg-primary-container p-6 rounded-xl shadow-sm flex flex-col justify-between">
+<p class="text-xs font-bold text-on-primary-container uppercase tracking-widest mb-1">Data Management</p>
+<button class="bg-white/20 hover:bg-white/30 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors border border-white/20">
+<span class="material-symbols-outlined text-lg">download</span>
+            Export to CSV
+          </button>
+</div>
+</section>
+<!-- Table & Filters Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Filters Bar -->
+<div class="p-6 bg-slate-50/50 flex flex-wrap items-end gap-6 border-b border-slate-100">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Search Patient</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border-transparent focus:ring-2 focus:ring-sky-100 focus:border-sky-200 rounded-lg text-sm outline-none transition-all" placeholder="Name or ID..." type="text"/>
+</div>
+</div>
+<div class="w-48">
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Doctor</label>
+<select class="w-full px-4 py-2 bg-white border-transparent focus:ring-2 focus:ring-sky-100 rounded-lg text-sm outline-none transition-all appearance-none cursor-pointer">
+<option>All Doctors</option>
+<option>Dr. Sarah Miller</option>
+<option>Dr. James Wilson</option>
+<option>Dr. Elena Rodriguez</option>
+</select>
+</div>
+<div class="w-40">
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Status</label>
+<select class="w-full px-4 py-2 bg-white border-transparent focus:ring-2 focus:ring-sky-100 rounded-lg text-sm outline-none transition-all appearance-none cursor-pointer">
+<option>All Status</option>
+<option>Pending</option>
+<option>Confirmed</option>
+<option>Cancelled</option>
+</select>
+</div>
+<div class="w-48">
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Date Range</label>
+<input class="w-full px-4 py-2 bg-white border-transparent focus:ring-2 focus:ring-sky-100 rounded-lg text-sm outline-none transition-all" type="date"/>
+</div>
+<button class="bg-primary text-white font-semibold h-10 px-6 rounded-lg hover:bg-secondary transition-colors shadow-sm">
+            Apply Filters
+          </button>
+</div>
+<!-- Appointments Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/80">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Patient Name</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Doctor</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Date &amp; Time</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<!-- Row 1 -->
+<tr class="hover:bg-sky-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-700 font-bold text-xs">AB</div>
+<div>
+<p class="font-semibold text-slate-900">Alice Bennett</p>
+<p class="text-xs text-slate-400">ID: #MC-9021</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Dr. Sarah Miller</p>
+<p class="text-xs text-slate-400">Cardiology</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Oct 24, 2024</p>
+<p class="text-xs text-slate-400">09:30 AM</p>
+</td>
+<td class="px-6 py-4">
+<span class="status-confirmed text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Confirmed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors" title="View Details">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Cancel Appointment">
+<span class="material-symbols-outlined text-xl">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low hover:bg-sky-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-700 font-bold text-xs">JR</div>
+<div>
+<p class="font-semibold text-slate-900">John Richardson</p>
+<p class="text-xs text-slate-400">ID: #MC-8842</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Dr. James Wilson</p>
+<p class="text-xs text-slate-400">General Practice</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Oct 24, 2024</p>
+<p class="text-xs text-slate-400">11:00 AM</p>
+</td>
+<td class="px-6 py-4">
+<span class="status-pending text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Pending</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1 bg-primary text-white text-xs font-bold rounded-lg hover:bg-secondary transition-colors">Confirm</button>
+<button class="p-2 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors group-hover:opacity-100">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-sky-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-700 font-bold text-xs">MT</div>
+<div>
+<p class="font-semibold text-slate-900">Maria Thompson</p>
+<p class="text-xs text-slate-400">ID: #MC-7621</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Dr. Elena Rodriguez</p>
+<p class="text-xs text-slate-400">Dermatology</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Oct 24, 2024</p>
+<p class="text-xs text-slate-400">02:15 PM</p>
+</td>
+<td class="px-6 py-4">
+<span class="status-cancelled text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Cancelled</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">history</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low hover:bg-sky-50/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-700 font-bold text-xs">SK</div>
+<div>
+<p class="font-semibold text-slate-900">Samuel King</p>
+<p class="text-xs text-slate-400">ID: #MC-1104</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Dr. Sarah Miller</p>
+<p class="text-xs text-slate-400">Cardiology</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Oct 25, 2024</p>
+<p class="text-xs text-slate-400">10:00 AM</p>
+</td>
+<td class="px-6 py-4">
+<span class="status-confirmed text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Confirmed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50/50 flex items-center justify-between">
+<p class="text-xs font-semibold text-slate-500">Showing 1 to 10 of 42 appointments</p>
+<div class="flex gap-2">
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-white transition-all text-slate-400 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="h-10 w-10 bg-primary text-white font-bold rounded-lg text-sm">1</button>
+<button class="h-10 w-10 bg-white border border-slate-200 text-slate-600 hover:border-sky-200 font-bold rounded-lg text-sm transition-all">2</button>
+<button class="h-10 w-10 bg-white border border-slate-200 text-slate-600 hover:border-sky-200 font-bold rounded-lg text-sm transition-all">3</button>
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-white transition-all text-slate-400">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Component -->
+<footer class="w-full py-12 px-8 bg-slate-50 mt-12">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1 md:col-span-1">
+<h4 class="text-xl font-bold text-sky-700 mb-4">MediCare Clinic</h4>
+<p class="body-lg text-slate-600 leading-relaxed mb-4">Providing a Clinical Sanctuary for premium healthcare management and patient-first experiences.</p>
+<p class="text-xs text-slate-500">© 2024 MediCare Clinic Sanctuary. All rights reserved.</p>
+</div>
+<div>
+<h5 class="font-bold text-sky-900 mb-4 uppercase tracking-widest text-xs">Resources</h5>
+<ul class="space-y-3">
+<li><a class="text-slate-500 hover:underline transition-all body-lg" href="#">Patient Portal</a></li>
+<li><a class="text-slate-500 hover:underline transition-all body-lg" href="#">Emergency Care</a></li>
+<li><a class="text-slate-500 hover:underline transition-all body-lg" href="#">Health Library</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sky-900 mb-4 uppercase tracking-widest text-xs">Legal</h5>
+<ul class="space-y-3">
+<li><a class="text-slate-500 hover:underline transition-all body-lg" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 hover:underline transition-all body-lg" href="#">Terms of Service</a></li>
+<li><a class="text-slate-500 hover:underline transition-all body-lg" href="#">Cookie Settings</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sky-900 mb-4 uppercase tracking-widest text-xs">Clinic Status</h5>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed-variant p-4 rounded-xl">
+<p class="text-xs font-bold flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-tertiary animate-pulse"></span>
+              All Systems Operational
+            </p>
+<p class="text-[11px] mt-1 opacity-80">Last synced: 2 mins ago</p>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<!-- Floating Action Button (FAB) - Suppression Logic: Shown only on Dashboard/Appointments main view -->
+<button class="fixed bottom-8 right-8 h-14 w-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-2xl">add</span>
+<span class="absolute right-16 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold pointer-events-none">New Appointment</span>
+</button>
+</body></html>
