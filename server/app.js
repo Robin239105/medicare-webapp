@@ -21,8 +21,15 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.get('/', (req, res) => res.send('MediCare API is running!'));
-app.get('/api', (req, res) => res.send('MediCare API is running!'));
+app.get('/api', (req, res) => res.json({ message: 'MediCare Clinical Sanctuary API is ONLINE!', status: 'HEALTHY' }));
+app.get('/api/health', (req, res) => {
+  const dbStatus = mongoose.connection.readyState;
+  res.json({
+    database: dbStatus === 1 ? 'Connected' : 'Disconnected',
+    readyState: dbStatus,
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Routes
 const User = require('./models/User');
