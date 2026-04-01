@@ -80,7 +80,6 @@ async function connectDB() {
     console.log('📡 Attempting to connect to MongoDB Atlas...');
     cached.promise = mongoose.connect(uri, opts).then(async (m) => {
       console.log('✅ Connected to MongoDB Sanctuary');
-      await seedData();
       return m;
     }).catch(err => {
       console.error('❌ MongoDB Connection Error:', err.message);
