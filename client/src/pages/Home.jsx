@@ -96,7 +96,9 @@ const Home = () => {
     fetchDoctors()
   }, [])
 
-  const featuredDoctors = doctors.slice(0, 3)
+  const featuredDoctors = doctors
+    .filter((doc, index, self) => index === self.findIndex(d => d.name === doc.name))
+    .slice(0, 3)
 
   return (
     <div className="bg-surface font-body text-on-surface antialiased">

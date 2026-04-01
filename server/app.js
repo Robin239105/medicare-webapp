@@ -254,137 +254,42 @@ app.delete('/api/appointments/:id', async (req, res) => {
 // Seed Initial Data (Helper)
 app.post('/api/seed', async (req, res) => {
   try {
-    await Doctor.deleteMany();
-    await Service.deleteMany();
+    const existingCount = await Doctor.countDocuments();
+    const existingServiceCount = await Service.countDocuments();
+    
+    if (existingCount > 0 && existingServiceCount > 0) {
+      return res.status(200).json({ message: "Database already contains data, skipping seed." });
+    }
+
+    const defaultWeekdaySchedule = [
+      { day: 'Monday', startTime: '09:00', endTime: '17:00', location: 'Main Wing' },
+      { day: 'Tuesday', startTime: '09:00', endTime: '17:00', location: 'Main Wing' },
+      { day: 'Wednesday', startTime: '09:00', endTime: '17:00', location: 'Main Wing' },
+      { day: 'Thursday', startTime: '09:00', endTime: '17:00', location: 'Main Wing' },
+      { day: 'Friday', startTime: '09:00', endTime: '17:00', location: 'Main Wing' }
+    ];
 
     const doctors = await Doctor.insertMany([
-      { 
-        name: "Dr. Julian Vance", 
-        specialization: "Cardiology", 
-        bio: "Senior Cardiologist with 15 years experience in complex heart disease and preventative cardiology.",
-        image: "https://images.unsplash.com/photo-1712215544003-af10130f8eb3?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Monday", startTime: "09:00", endTime: "17:00", location: "Suite 101" },
-          { day: "Tuesday", startTime: "09:00", endTime: "17:00", location: "Suite 101" },
-          { day: "Wednesday", startTime: "10:00", endTime: "16:00", location: "Suite 101" },
-          { day: "Thursday", startTime: "09:00", endTime: "17:00", location: "Suite 101" },
-          { day: "Friday", startTime: "09:00", endTime: "15:00", location: "Suite 101" }
-        ]
-      },
-      { 
-        name: "Dr. Elena Richardson", 
-        specialization: "Neurology", 
-        bio: "Specialist in advanced neurological care, offering cutting-edge treatments for chronic conditions.",
-        image: "https://images.unsplash.com/photo-1623854766464-c3645e6841d8?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Monday", startTime: "08:00", endTime: "15:00", location: "Neuro Center" },
-          { day: "Tuesday", startTime: "08:00", endTime: "15:00", location: "Neuro Center" },
-          { day: "Thursday", startTime: "11:00", endTime: "18:00", location: "Neuro Center" },
-          { day: "Friday", startTime: "08:00", endTime: "15:00", location: "Neuro Center" }
-        ]
-      },
-      { 
-        name: "Dr. Marcus Chen", 
-        specialization: "Pediatrics", 
-        bio: "Compassionate child health specialist dedicated to providing holistic care for infants and adolescents.",
-        image: "https://images.unsplash.com/photo-1647866965225-1ed2b0c0a5cc?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Wednesday", startTime: "09:00", endTime: "16:00", location: "Pediatrics Wing" },
-          { day: "Friday", startTime: "09:00", endTime: "16:00", location: "Pediatrics Wing" },
-          { day: "Saturday", startTime: "10:00", endTime: "14:00", location: "Pediatrics Wing" }
-        ]
-      },
-      { 
-        name: "Dr. Sophia Martinez", 
-        specialization: "Orthopedic Surgery", 
-        bio: "Expert in sports medicine and joint replacement surgery with focus on minimally invasive techniques.",
-        image: "https://images.unsplash.com/photo-1706565029539-d09af5896340?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Monday", startTime: "10:00", endTime: "15:00", location: "Main Surgicenter" },
-          { day: "Tuesday", startTime: "10:00", endTime: "15:00", location: "Main Surgicenter" },
-          { day: "Wednesday", startTime: "10:00", endTime: "15:00", location: "Main Surgicenter" },
-          { day: "Thursday", startTime: "09:00", endTime: "14:00", location: "Main Surgicenter" }
-        ]
-      },
-      { 
-        name: "Dr. David Anderson", 
-        specialization: "Dermatology", 
-        bio: "Specialist in advanced skin health, laser surgery, and aesthetic medical treatments.",
-        image: "https://images.unsplash.com/photo-1666887360369-1901f341fdad?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Tuesday", startTime: "09:00", endTime: "13:00", location: "Aesthetics Suite" },
-          { day: "Wednesday", startTime: "09:00", endTime: "13:00", location: "Aesthetics Suite" },
-          { day: "Friday", startTime: "10:00", endTime: "17:00", location: "Aesthetics Suite" }
-        ]
-      },
-      { 
-        name: "Dr. Olivia Thompson", 
-        specialization: "General Medicine", 
-        bio: "Dedicated primary care physician focused on family health and long-term wellness planning.",
-        image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Monday", startTime: "08:00", endTime: "16:00", location: "Family Wing" },
-          { day: "Tuesday", startTime: "08:00", endTime: "16:00", location: "Family Wing" },
-          { day: "Wednesday", startTime: "08:00", endTime: "16:00", location: "Family Wing" },
-          { day: "Thursday", startTime: "08:00", endTime: "16:00", location: "Family Wing" },
-          { day: "Friday", startTime: "08:00", endTime: "16:00", location: "Family Wing" }
-        ]
-      },
-      { 
-        name: "Dr. James Wilson", 
-        specialization: "Cardiology", 
-        bio: "Interventional cardiologist specialist in advanced heart rhythm management and diagnostics.",
-        image: "https://images.unsplash.com/photo-1678940805950-73f2127f9d4e?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Tuesday", startTime: "10:00", endTime: "15:00", location: "Cardio Lab" },
-          { day: "Thursday", startTime: "10:00", endTime: "15:00", location: "Cardio Lab" }
-        ]
-      },
-      { 
-        name: "Dr. Anna Krueger", 
-        specialization: "Psychiatry", 
-        bio: "Compassionate mental health professional focused on integrative psychotherapy and trauma recovery.",
-        image: "https://images.unsplash.com/photo-1719610894782-7b376085e200?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Tuesday", startTime: "12:00", endTime: "19:00", location: "Quiet Wing" },
-          { day: "Thursday", startTime: "12:00", endTime: "19:00", location: "Quiet Wing" },
-          { day: "Friday", startTime: "09:00", endTime: "14:00", location: "Quiet Wing" }
-        ]
-      },
-      { 
-        name: "Dr. Robert Singh", 
-        specialization: "Pediatrics", 
-        bio: "Specialist in pediatric developmental health and childhood nutrition advisor.",
-        image: "https://images.unsplash.com/photo-1622253694238-3b22139576c6?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Monday", startTime: "10:00", endTime: "17:00", location: "Pediatrics Wing" },
-          { day: "Wednesday", startTime: "09:00", endTime: "17:00", location: "Pediatrics Wing" }
-        ]
-      },
-      { 
-        name: "Dr. Linda Gray", 
-        specialization: "General Medicine", 
-        bio: "Experienced internal medicine doctor specialized in chronic disease management and preventive care.",
-        image: "https://images.unsplash.com/photo-1678695972687-033fa0bdbac9?q=80&w=1000&auto=format&fit=crop",
-        schedule: [
-          { day: "Monday", startTime: "09:00", endTime: "15:00", location: "Main Wing" },
-          { day: "Wednesday", startTime: "09:00", endTime: "15:00", location: "Main Wing" },
-          { day: "Friday", startTime: "09:00", endTime: "15:00", location: "Main Wing" }
-        ]
-      }
+      { name: 'Dr. Sarah Jenkins', specialization: 'Senior Cardiologist', bio: 'Advanced heart health diagnostics and personalized care plans for cardiovascular wellness.', image: 'https://images.unsplash.com/photo-1623854766464-c3645e6841d8?q=80&w=1000&auto=format&fit=crop', schedule: defaultWeekdaySchedule },
+      { name: 'Dr. Michael Chen', specialization: 'Neurology Specialist', bio: 'Comprehensive neurological evaluations and treatment for brain and nervous system health.', image: 'https://images.unsplash.com/photo-1647866965225-1ed2b0c0a5cc?q=80&w=1000&auto=format&fit=crop', schedule: defaultWeekdaySchedule },
+      { name: 'Dr. Elena Rodriguez', specialization: 'Lead Pediatrician', bio: 'Gentle and expert medical care tailored for infants, children, and adolescents.', image: 'https://images.unsplash.com/photo-1706565029539-d09af5896340?q=80&w=1000&auto=format&fit=crop', schedule: defaultWeekdaySchedule }
     ]);
 
     const services = await Service.insertMany([
-      { title: "Clinical Sanctuary Evaluation", description: "Regular health check-up and medical advice.", price: 50 },
-      { title: "Cardiology Screening", description: "Comprehensive heart health evaluation.", price: 120 },
-      { title: "Pediatric Care", description: "Specialized care for children and infants.", price: 60 }
+      { title: 'Cardiology', description: 'Advanced heart health diagnostics and personalized care plans.', price: 150 },
+      { title: 'Neurology', description: 'Comprehensive neurological evaluations and specialized treatment.', price: 180 },
+      { title: 'Orthopedics', description: 'Specialized care for bone, joint, and muscle health.', price: 140 },
+      { title: 'Pediatrics', description: 'Expert medical care tailored for infants and children.', price: 90 },
+      { title: 'Dermatology', description: 'Expert skin care treatments and diagnostic services.', price: 120 },
+      { title: 'Emergency', description: '24/7 rapid response medical care for critical needs.', price: 200 }
     ]);
 
-    res.json({ message: "Seeding complete!", doctors, services });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(200).json({ message: 'Success! 3 doctors & 6 services seeded.', doctors, services });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
+
 
 // --- Auth API ---
 app.post('/api/auth/register', async (req, res) => {

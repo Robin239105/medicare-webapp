@@ -82,7 +82,9 @@ const OurDoctors = () => {
               <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
               <p className="text-on-surface-variant font-bold tracking-widest uppercase">Synchronizing clinical data...</p>
             </div>
-          ) : doctors.filter(d => {
+          ) : doctors.filter((doc, index, self) => 
+            index === self.findIndex(d => d.name === doc.name)
+          ).filter(d => {
             const matchesSearch = d.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                                  d.specialization.toLowerCase().includes(searchTerm.toLowerCase())
             const matchesCategory = activeCategory === 'All Specialists' || d.specialization === activeCategory
