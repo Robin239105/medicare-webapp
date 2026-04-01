@@ -1,29 +1,26 @@
-// Vercel provides environment variables natively — no dotenv needed here
+// Vercel provides environment variables natively — no dotenv needed
 const serverless = require('serverless-http');
 const connectDB = require('../server/db');
 const app = require('../server/app');
 
-let handlerPromise;
-
-async function getHandler() {
-  if (!handlerPromise) {
-    handlerPromise = (async () => {
-      await connectDB();
-      return serverless(app);
-    })();
-  }
-  return handlerPromise;
-}
+let handler;
 
 module.exports = async (req, res) => {
   try {
-    const handler = await getHandler();
+    // Connect to DB on each request (uses cached connection after first success)
+    await connectDB();
+    
+    if (!handler) {
+      handler = serverless(app);
+    }
+    
     return handler(req, res);
   } catch (error) {
-    console.error('SERVERLESS_STARTUP_ERROR:', error);
+    console.error('SERVERLESS_ERROR:', error.message);
     res.status(500).json({
-      error: 'Startup failed',
-      message: error.message
+      error: 'API_CONNECTION_FAILED',
+      message: error.message,
+      hint: 'Check MongoDB Atlas Network Access (must have 0.0.0.0/0) and verify MONGODB_URI env var'
     });
   }
 };
