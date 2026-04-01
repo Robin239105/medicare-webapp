@@ -8,32 +8,30 @@ if (!cached) {
 
 async function connectDB() {
   const uri = process.env.MONGODB_URI;
-  if (!uri) {
-    console.error('❌ MONGODB_URI is MISSING in environment variables!');
-    throw new Error('MONGODB_URI is not defined');
-  }
+  if (!uri) throw new Error('MONGODB_URI is not defined');
 
-  if (cached.conn) {
+  // Check if connection is already established and healthy
+  if (cached.conn && mongoose.connection.readyState === 1) {
     return cached.conn;
   }
 
   if (!cached.promise) {
-    const opts = { 
+    const opts = {
       serverSelectionTimeoutMS: 5000,
       connectTimeoutMS: 5000,
+      maxPoolSize: 1,        // Limit connections in serverless environment
+      bufferCommands: false, // Don't buffer if connection is down
     };
-    
-    console.log('📡 Connecting to MongoDB...');
-    cached.promise = mongoose.connect(uri, opts)
-      .then((m) => {
-        console.log('✅ Connected to MongoDB');
-        return m;
-      })
-      .catch(err => {
-        console.error('❌ MongoDB Error:', err.message);
-        cached.promise = null;
-        throw err;
-      });
+
+    console.log('📡 Connecting to MongoDB Atlas...');
+    cached.promise = mongoose.connect(uri, opts).then(m => {
+      console.log('✅ Connected to MongoDB Sanctuary');
+      return m;
+    }).catch(err => {
+      console.error('❌ MongoDB Connection Error:', err.message);
+      cached.promise = null; // Reset for next retry
+      throw err;
+    });
   }
 
   try {

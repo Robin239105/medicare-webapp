@@ -3,6 +3,7 @@ let handler;
 let app;
 let dbConnected = false;
 
+// 1. Defer loading the heavy Express app until needed
 async function loadApp() {
   if (!app) {
     app = require('../server/app');
@@ -10,6 +11,7 @@ async function loadApp() {
   return app;
 }
 
+// 2. Defer MongoDB connection until needed
 async function ensureDB() {
   if (!dbConnected) {
     const connectDB = require('../server/db');
@@ -19,55 +21,43 @@ async function ensureDB() {
 }
 
 module.exports = async (req, res) => {
-  // Quick diagnostic endpoint - no dependencies needed
+  // DIAGNOSTIC ENDPOINT: Checks if function is alive and sees Env Vars
   if (req.url === '/api/diag' || req.url === '/api/diag/') {
     const uri = process.env.MONGODB_URI || '';
-    // Show if URI has database name (between .net/ and ?)
     const hasDbName = /\.mongodb\.net\/[a-zA-Z]/.test(uri);
     return res.status(200).json({
       status: 'FUNCTION_ALIVE',
       mongoUriSet: !!uri,
-      mongoUriLength: uri.length,
       hasDbName: hasDbName,
-      uriEndsCorrectly: uri.includes('mongodb.net/medicare') || uri.includes('mongodb.net/?'),
       jwtSecretSet: !!process.env.JWT_SECRET,
       nodeVersion: process.version,
       timestamp: new Date().toISOString()
     });
   }
 
-  // DB connection test endpoint
+  // DB TEST ENDPOINT: Verifies Atlas connection directly
   if (req.url === '/api/dbtest' || req.url === '/api/dbtest/') {
     try {
       const mongoose = require('mongoose');
       const uri = process.env.MONGODB_URI;
-      if (!uri) {
-        return res.status(500).json({ error: 'MONGODB_URI not set' });
-      }
+      if (!uri) return res.status(500).json({ error: 'MONGODB_URI not set' });
       
-      // Try a direct connection with very short timeout
       const conn = await mongoose.createConnection(uri, {
         serverSelectionTimeoutMS: 5000,
         connectTimeoutMS: 5000,
       }).asPromise();
       
       await conn.close();
-      return res.status(200).json({ 
-        status: 'DB_CONNECTED',
-        message: 'MongoDB Atlas connection successful!' 
-      });
+      return res.status(200).json({ status: 'DB_CONNECTED', message: 'Atlas connection successful!' });
     } catch (error) {
-      return res.status(500).json({ 
-        status: 'DB_FAILED',
-        error: error.message,
-        code: error.code || 'UNKNOWN'
-      });
+      return res.status(500).json({ status: 'DB_FAILED', error: error.message });
     }
   }
 
+  // MAIN APP EXECUTION
   try {
-    await ensureDB();
-    const expressApp = await loadApp();
+    const expressApp = await loadApp();  // 🚀 Load app weight first for smoother cold start
+    await ensureDB();                    // 📡 Then connect to data
     
     if (!handler) {
       const serverless = require('serverless-http');
@@ -80,7 +70,7 @@ module.exports = async (req, res) => {
     return res.status(500).json({
       error: 'API_CONNECTION_FAILED',
       message: error.message,
-      hint: 'Check MongoDB Atlas Network Access (0.0.0.0/0) and MONGODB_URI env var'
+      hint: 'Check Atlas 0.0.0.0/0 Whitelist and MONGODB_URI'
     });
   }
 };
