@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+try { require('dotenv').config(); } catch (e) { /* Vercel provides env vars natively */ }
 
 const app = express();
 

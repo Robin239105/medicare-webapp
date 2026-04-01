@@ -71,10 +71,10 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
-    // Removed bufferCommands: false to allow Mongoose to wait for connection
     const opts = { 
-      connectTimeoutMS: 10000,
-      socketTimeoutMS: 30000
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+      socketTimeoutMS: 10000
     };
     
     console.log('📡 Attempting to connect to MongoDB Atlas...');

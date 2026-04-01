@@ -1,6 +1,4 @@
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '..', 'server', '.env') });
-
+// Vercel provides environment variables natively — no dotenv needed here
 const serverless = require('serverless-http');
 const connectDB = require('../server/db');
 const app = require('../server/app');
@@ -24,10 +22,8 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('SERVERLESS_STARTUP_ERROR:', error);
     res.status(500).json({
-      error: 'CRITICAL_SANCTUARY_CRASH',
-      message: error.message,
-      stack: error.stack,
-      hint: 'Check MONGODB_URI and JWT_SECRET in Vercel Dashboard'
+      error: 'Startup failed',
+      message: error.message
     });
   }
 };
