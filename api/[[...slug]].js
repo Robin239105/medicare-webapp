@@ -18,6 +18,16 @@ async function getHandler() {
 }
 
 module.exports = async (req, res) => {
-  const handler = await getHandler();
-  return handler(req, res);
+  try {
+    const handler = await getHandler();
+    return handler(req, res);
+  } catch (error) {
+    console.error('SERVERLESS_STARTUP_ERROR:', error);
+    res.status(500).json({
+      error: 'CRITICAL_SANCTUARY_CRASH',
+      message: error.message,
+      stack: error.stack,
+      hint: 'Check MONGODB_URI and JWT_SECRET in Vercel Dashboard'
+    });
+  }
 };
