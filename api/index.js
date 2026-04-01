@@ -1,76 +1,68 @@
-// Minimal serverless entry point for Vercel
-let handler;
-let app;
-let dbConnected = false;
+// api/index.js
+const mongoose = require('mongoose');
 
-// 1. Defer loading the heavy Express app until needed
-async function loadApp() {
-  if (!app) {
-    app = require('../server/app');
-  }
-  return app;
-}
+let isConnected = false;
 
-// 2. Defer MongoDB connection until needed
-async function ensureDB() {
-  if (!dbConnected) {
-    const connectDB = require('../server/db');
-    await connectDB();
-    dbConnected = true;
+// 1. Connection logic with hard AbortController timeout
+async function connectDB() {
+  if (isConnected && mongoose.connection.readyState === 1) return;
+
+  // Hard abort if takes more than 8 seconds (Vercel cold start window)
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
+  try {
+    console.log('📡 Connecting to MongoDB Atlas...');
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 6000,
+      connectTimeoutMS: 6000,
+      socketTimeoutMS: 6000,
+      maxPoolSize: 1,        // Limit connections for serverless
+      bufferCommands: false, // Prevents silent hangs when connection fails
+    });
+    isConnected = true;
+    console.log('✅ Connected to MongoDB Sanctuary');
+    clearTimeout(timeout);
+  } catch (err) {
+    console.error('❌ DB connect failed:', err.message);
+    clearTimeout(timeout);
+    isConnected = false;
+    throw err;
   }
 }
 
 module.exports = async (req, res) => {
-  // DIAGNOSTIC ENDPOINT: Checks if function is alive and sees Env Vars
-  if (req.url === '/api/diag' || req.url === '/api/diag/') {
-    const uri = process.env.MONGODB_URI || '';
-    const hasDbName = /\.mongodb\.net\/[a-zA-Z]/.test(uri);
-    return res.status(200).json({
-      status: 'FUNCTION_ALIVE',
-      mongoUriSet: !!uri,
-      hasDbName: hasDbName,
-      jwtSecretSet: !!process.env.JWT_SECRET,
-      nodeVersion: process.version,
+  // DIAGNOSTIC - skips DB for quick status check
+  if (req.url.startsWith('/api/diag')) {
+    return res.status(200).json({ 
+      status: 'FUNCTION_ALIVE', 
+      mongoUriSet: !!process.env.MONGODB_URI,
       timestamp: new Date().toISOString()
     });
   }
 
-  // DB TEST ENDPOINT: Verifies Atlas connection directly
-  if (req.url === '/api/dbtest' || req.url === '/api/dbtest/') {
-    try {
-      const mongoose = require('mongoose');
-      const uri = process.env.MONGODB_URI;
-      if (!uri) return res.status(500).json({ error: 'MONGODB_URI not set' });
-      
-      const conn = await mongoose.createConnection(uri, {
-        serverSelectionTimeoutMS: 5000,
-        connectTimeoutMS: 5000,
-      }).asPromise();
-      
-      await conn.close();
-      return res.status(200).json({ status: 'DB_CONNECTED', message: 'Atlas connection successful!' });
-    } catch (error) {
-      return res.status(500).json({ status: 'DB_FAILED', error: error.message });
-    }
+  // Core execution: Try connecting to DB with explicit error handling
+  try {
+    await connectDB();
+  } catch (err) {
+    return res.status(503).json({ 
+      error: 'DATABASE_UNAVAILABLE', 
+      message: 'MongoDB Atlas connection timed out or was refused',
+      detail: err.message,
+      hint: 'Verify 0.0.0.0/0 IP whitelist in Atlas and MONGODB_URI'
+    });
   }
 
-  // MAIN APP EXECUTION
+  // Load and run Express app directly (no serverless-http wrapper)
   try {
-    const expressApp = await loadApp();  // 🚀 Load app weight first for smoother cold start
-    await ensureDB();                    // 📡 Then connect to data
-    
-    if (!handler) {
-      const serverless = require('serverless-http');
-      handler = serverless(expressApp);
-    }
-    
-    return handler(req, res);
-  } catch (error) {
-    console.error('API_ERROR:', error.message);
-    return res.status(500).json({
-      error: 'API_CONNECTION_FAILED',
-      message: error.message,
-      hint: 'Check Atlas 0.0.0.0/0 Whitelist and MONGODB_URI'
+    const app = require('../server/app');
+    // Calling the app directly as a function handles (req, res) correctly on Vercel
+    return app(req, res);
+  } catch (err) {
+    console.error('❌ APP_EXECUTION_ERROR:', err.message);
+    return res.status(500).json({ 
+      error: 'SERVER_EXECUTION_ERROR',
+      message: err.message 
     });
   }
 };
